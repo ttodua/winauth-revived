@@ -1,3 +1,10 @@
+❗  ❗   ❗       Note, this is update over the <a href="https://github.com/Florastamine/winauth">https://github.com/Florastamine/winauth</a> fork (when he updated at  2020-09-01.
+I've added only two things:
+- Search-box to quickly filter the desired sites from list
+- Option to drag &drop QR-image onto the Add-Authenticator window.
+
+
+
 # Windows Authenticator
 
 *WinAuth is a portable, open-source Authenticator for Windows that provides counter or time-based RFC 6238 authenticators and common implementations, such as the Google Authenticator. WinAuth can be used with many Bitcoin trading websites as well as games, supporting Battle.net (World of Warcraft, Hearthstone, Heroes of the Storm, Diablo), Guild Wars 2, Glyph (Rift and ArcheAge), WildStar, RuneScape, SWTOR and Steam.*
