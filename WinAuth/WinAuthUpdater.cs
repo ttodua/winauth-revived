@@ -148,14 +148,6 @@ namespace WinAuth
 				_latestVersion = version;
 			}
 #endif
-#if NETFX_3
-			try
-			{
-				version = new Version(Config.ReadSetting(WINAUTHREGKEY_LATESTVERSION, string.Empty));
-				_latestVersion = version;
-			}
-			catch (Exception) { }
-#endif
 		}
 
 		#region Properties
@@ -196,16 +188,6 @@ namespace WinAuth
 				Version version;
 #if NETFX_4
 				if (Version.TryParse(FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion, out version) == false)
-				{
-					throw new InvalidOperationException("Cannot get Assembly version information");
-				}
-#endif
-#if NETFX_3
-				try
-				{
-					version = new Version(FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
-				}
-				catch (Exception)
 				{
 					throw new InvalidOperationException("Cannot get Assembly version information");
 				}
@@ -397,13 +379,6 @@ namespace WinAuth
 #if NETFX_4
 			Version.TryParse(node.InnerText, out version);
 #endif
-#if NETFX_3
-			try
-			{
-				version = new Version(FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
-			}
-			catch (Exception) { }
-#endif
 			if (node != null && version != null)
 			{
 				WinAuthVersionInfo latestversion = new WinAuthVersionInfo(version);
@@ -416,9 +391,6 @@ namespace WinAuth
 				}
 #if NETFX_4
 				node = xml.SelectSingleNode("//url");
-#endif
-#if NETFX_3
-				node = xml.SelectSingleNode("//url35");
 #endif
 				if (node != null && string.IsNullOrEmpty(node.InnerText) == false)
 				{

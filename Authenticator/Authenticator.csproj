@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WinAuth</RootNamespace>
     <AssemblyName>Authenticator</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -28,8 +28,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Net4.5\x86\bin\Debug\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\x86\obj\Debug\</IntermediateOutputPath>
+    <OutputPath>x86\bin\Debug\</OutputPath>
+    <IntermediateOutputPath>x86\obj\Debug\</IntermediateOutputPath>
     <DefineConstants>TRACE;DEBUG;NETFX_4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,8 +39,8 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Net4.5\x86\bin\Release\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\x86\obj\Release\</IntermediateOutputPath>
+    <OutputPath>x86\bin\Release\</OutputPath>
+    <IntermediateOutputPath>x86\obj\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE;NETFX_4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -52,8 +52,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Net4.5\bin\Debug\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\obj\Debug\</IntermediateOutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\Debug\</IntermediateOutputPath>
     <DefineConstants>TRACE;DEBUG;NETFX_4</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -62,8 +62,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>..\Net4.5\bin\Release\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\obj\Release\</IntermediateOutputPath>
+    <OutputPath>bin\Release\</OutputPath>
+    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE;NETFX_4</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -74,8 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Net4.5\x64\bin\Debug\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\x64\obj\Debug\</IntermediateOutputPath>
+    <OutputPath>x64\bin\Debug\</OutputPath>
+    <IntermediateOutputPath>x64\obj\Debug\</IntermediateOutputPath>
     <DefineConstants>TRACE;DEBUG;NETFX_4</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -84,8 +84,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\Net4.5\x64\bin\Release\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\x64\obj\Release\</IntermediateOutputPath>
+    <OutputPath>x64\bin\Release\</OutputPath>
+    <IntermediateOutputPath>x64\obj\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE;NETFX_4</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -96,17 +96,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.7.4137.9688, Culture=neutral, PublicKeyToken=a4292a325f69b123, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" Condition="$([System.Version]::Parse('$(TargetFrameworkVersion.Substring(1))').CompareTo($([System.Version]::Parse('4.0')))) &gt;= 0" />
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -127,7 +124,6 @@
     <Compile Include="Base32.cs" />
     <Compile Include="OktaVerifyAuthenticator.cs" />
     <Compile Include="SteamClient.cs" />
-    <Compile Include="HIDDevice.cs" />
     <Compile Include="HOTPAuthenticator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -135,12 +131,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SteamAuthenticator.cs" />
-    <Compile Include="TrionAuthenticator.cs" />
     <Compile Include="GoogleAuthenticator.cs" />
-    <Compile Include="GuildWarsAuthenticator.cs" />
     <Compile Include="MicrosoftAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="YubiKey.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -151,10 +144,6 @@
   <ItemGroup>
     <None Include="packages.Authenticator.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\WinAuth.YubiKey.x64.dll" />
-    <EmbeddedResource Include="Resources\WinAuth.YubiKey.x86.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

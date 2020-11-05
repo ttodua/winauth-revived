@@ -94,10 +94,7 @@ namespace WinAuth
 			{new Tuple<string,string>("Origin", "OriginIcon.png")},
 			{new Tuple<string,string>("s3", string.Empty)},
 			{new Tuple<string,string>("ArenaNet", "ArenaNetIcon.png")},
-			{new Tuple<string,string>("Guild Wars 2", "GuildWarsAuthenticatorIcon.png")},
 			{new Tuple<string,string>("s4", string.Empty)},
-			{new Tuple<string,string>("Trion", "TrionAuthenticatorIcon.png")},
-			{new Tuple<string,string>("Glyph", "GlyphIcon.png")},
 			{new Tuple<string,string>("ArcheAge", "ArcheAgeIcon.png")},
 			{new Tuple<string,string>("Rift", "RiftIcon.png")},
 			{new Tuple<string,string>("Defiance", "DefianceIcon.png")},
@@ -177,8 +174,6 @@ namespace WinAuth
 			new RegisteredAuthenticator {Name="Google", AuthenticatorType=RegisteredAuthenticator.AuthenticatorTypes.Google, Icon="GoogleIcon.png"},
 			new RegisteredAuthenticator {Name="Microsoft", AuthenticatorType=RegisteredAuthenticator.AuthenticatorTypes.Microsoft, Icon="MicrosoftAuthenticatorIcon.png"},
 			new RegisteredAuthenticator {Name="Battle.Net", AuthenticatorType=RegisteredAuthenticator.AuthenticatorTypes.BattleNet, Icon="BattleNetAuthenticatorIcon.png"},
-			new RegisteredAuthenticator {Name="Guild Wars 2", AuthenticatorType=RegisteredAuthenticator.AuthenticatorTypes.GuildWars, Icon="GuildWarsAuthenticatorIcon.png"},
-			new RegisteredAuthenticator {Name="Glyph / Trion", AuthenticatorType=RegisteredAuthenticator.AuthenticatorTypes.Trion, Icon="GlyphIcon.png"},
 			new RegisteredAuthenticator {Name="Steam", AuthenticatorType=RegisteredAuthenticator.AuthenticatorTypes.Steam, Icon="SteamAuthenticatorIcon.png"},
 			new RegisteredAuthenticator {Name="Okta Verify", AuthenticatorType=RegisteredAuthenticator.AuthenticatorTypes.OktaVerify, Icon="OktaVerifyAuthenticatorIcon.png"}
 		};

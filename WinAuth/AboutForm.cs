@@ -60,9 +60,6 @@ namespace WinAuth
 			// get the version of the application
 			Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 			string debug = string.Empty;
-#if NETFX_3
-			debug += " for .NET 3.5";
-#endif
 #if BETA
 			debug += " (BETA)";
 #endif

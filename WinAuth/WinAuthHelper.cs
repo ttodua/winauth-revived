@@ -705,19 +705,10 @@ namespace WinAuth
 						}
 
             Authenticator.HMACTypes hmactype;
-#if NETFX_3
-            try
-            {
-              hmactype = (WinAuth.Authenticator.HMACTypes)Enum.Parse(typeof(WinAuth.Authenticator.HMACTypes), query["algorithm"], true);
-              auth.HMACType = hmactype;
-            }
-            catch (Exception) { }
-#else
             if (Enum.TryParse<Authenticator.HMACTypes>(query["algorithm"], true, out hmactype) == true)
             {
               auth.HMACType = hmactype;
             }
-#endif
             //
             if (label.Length != 0)
 						{
@@ -1184,9 +1175,6 @@ namespace WinAuth
 						{
 #if NETFX_4
 							key.DeleteSubKeyTree(valuekey, false);
-#endif
-#if NETFX_3
-							key.DeleteSubKeyTree(valuekey);
 #endif
 						}
 

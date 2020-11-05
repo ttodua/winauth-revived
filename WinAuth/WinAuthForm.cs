@@ -94,16 +94,6 @@ namespace WinAuth
 		private KeyboardHook m_hook;
 
 		/// <summary>
-		/// Handle for USB notification hook
-		/// </summary>
-		private IntPtr m_usbHandle;
-
-		/// <summary>
-		/// Current list of USB YubiKeys
-		/// </summary>
-		private List<HIDDevice.HIDDeviceEntry> m_yubis;
-
-		/// <summary>
 		/// Flag to say we are processing sending message to other window
 		/// </summary>
 		private object m_sendingKeys = new object();
@@ -253,8 +243,6 @@ namespace WinAuth
 
 			loadingPanel.Visible = true;
 			passwordPanel.Visible = false;
-			yubiPanel.Visible = false;
-
 #if NETFX_4
 			Task.Factory.StartNew<Tuple<WinAuthConfig, Exception>>(() =>
 			{
@@ -281,25 +269,15 @@ namespace WinAuth
 				{
 					loadingPanel.Visible = false;
 					passwordPanel.Visible = true;
-					yubiPanel.Visible = false;
 
 					this.passwordButton.Focus();
 					this.passwordField.Focus();
 
 					return;
 				}
-				else if (ex is BadYubiKeyException)
-				{
-					loadingPanel.Visible = false;
-					passwordPanel.Visible = false;
-					yubiPanel.Visible = true;
-					this.yubiLabel.Text = strings.YubikeyInsert;
-					return;
-				}
 				else if (ex is BadPasswordException)
 				{
 					loadingPanel.Visible = false;
-					yubiPanel.Visible = false;
 					passwordPanel.Visible = true;
 					this.passwordErrorLabel.Text = strings.InvalidPassword;
 					this.passwordErrorLabel.Tag = DateTime.Now.AddSeconds(3);
@@ -345,88 +323,6 @@ namespace WinAuth
 				InitializeForm();
 			}, TaskScheduler.FromCurrentSynchronizationContext());
 #endif
-#if NETFX_3
-			WinAuthConfig config;
-			try
-			{
-				// use previous config if we have one
-				config = WinAuthHelper.LoadConfig(this, configFile, password);
-				if (config == null)
-				{
-					System.Diagnostics.Process.GetCurrentProcess().Kill();
-					return;
-				}
-
-				// check for a v2 config file if this is a new config
-				if (config.Count == 0 && string.IsNullOrEmpty(config.Filename) == true)
-				{
-					_existingv2Config = WinAuthHelper.GetLastV2Config();
-				}
-
-				this.Config = config;
-				this.Config.OnConfigChanged += new ConfigChangedHandler(OnConfigChanged);
-
-				if (config.Upgraded == true)
-				{
-					SaveConfig(true);
-					// display warning
-					WinAuthForm.ErrorDialog(this, string.Format(strings.ConfigUpgraded, WinAuthConfig.CURRENTVERSION));
-				}
-
-				InitializeForm();
-			}
-			catch (Exception ex)
-			{
-				if (ex is WinAuthInvalidNewerConfigException)
-				{
-					MessageBox.Show(this, ex.Message, WinAuthMain.APPLICATION_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
-					System.Diagnostics.Process.GetCurrentProcess().Kill();
-					return;
-				}
-				else if (ex is EncryptedSecretDataException)
-				{
-					loadingPanel.Visible = false;
-					passwordPanel.Visible = true;
-					yubiPanel.Visible = false;
-
-					this.passwordButton.Focus();
-					this.passwordField.Focus();
-
-					return;
-				}
-				else if (ex is BadYubiKeyException)
-				{
-					loadingPanel.Visible = false;
-					passwordPanel.Visible = false;
-					yubiPanel.Visible = true;
-					this.yubiLabel.Text = strings.YubikeyInsert;
-					return;
-				}
-				else if (ex is BadPasswordException)
-				{
-					loadingPanel.Visible = false;
-					yubiPanel.Visible = false;
-					passwordPanel.Visible = true;
-					this.passwordErrorLabel.Text = strings.InvalidPassword;
-					this.passwordErrorLabel.Tag = DateTime.Now.AddSeconds(3);
-					// oddity with MetroFrame controls in have to set focus away and back to field to make it stick
-					this.Invoke((MethodInvoker)delegate { this.passwordButton.Focus(); this.passwordField.Focus(); });
-					this.passwordTimer.Enabled = true;
-					return;
-				}
-				else // if (ex is Exception)
-				{
-					if (ErrorDialog(this, strings.UnknownError + ": " + ex.Message, ex, MessageBoxButtons.RetryCancel) == System.Windows.Forms.DialogResult.Cancel)
-					{
-						this.Close();
-						return;
-					}
-					loadConfig(password);
-					return;
-				}
-			};
-#endif
-
     }
 
     /// <summary>
@@ -496,7 +392,6 @@ namespace WinAuth
 					form.PasswordType = Authenticator.PasswordTypes.Explicit;
 					if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
 					{
-						this.Config.Yubi = form.Yubikey;
 						this.Config.PasswordType = form.PasswordType;
 						if ((this.Config.PasswordType & Authenticator.PasswordTypes.Explicit) != 0 && string.IsNullOrEmpty(form.Password) == false)
 						{
@@ -569,7 +464,6 @@ namespace WinAuth
 						form.PasswordType = Authenticator.PasswordTypes.Explicit;
 						if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
 						{
-							this.Config.Yubi = form.Yubikey;
 							this.Config.PasswordType = form.PasswordType;
 							if ((this.Config.PasswordType & Authenticator.PasswordTypes.Explicit) != 0 && string.IsNullOrEmpty(form.Password) == false)
 							{
@@ -600,11 +494,6 @@ namespace WinAuth
 					retry = false;
 				}
 				catch (EncryptedSecretDataException)
-				{
-					needPassword = true;
-					invalidPassword = false;
-				}
-				catch (BadYubiKeyException)
 				{
 					needPassword = true;
 					invalidPassword = false;
@@ -668,12 +557,6 @@ namespace WinAuth
 				// redirect mouse wheel events
 				_wheelMessageForwarder = new WinAPI.MessageForwarder(authenticatorList, WinAPI.WM_MOUSEWHEEL);
 
-				// get the current USB devices
-				m_yubis = HIDDevice.GetAllDevices(YubiKey.VENDOR_ID);
-
-				// register for USB changes
-				m_usbHandle = WinAPI.RegisterUsbDeviceNotification(this.Handle);
-
 				m_initOnce = true;
 			}
 		}
@@ -721,7 +604,6 @@ namespace WinAuth
 			loadNotifyMenu(this.notifyMenu);
 			loadingPanel.Visible = false;
 			passwordPanel.Visible = false;
-			yubiPanel.Visible = false;
 			commandPanel.Visible = true;
 			introLabel.Visible = (this.Config.Count == 0);
 			authenticatorList.Visible = (this.Config.Count != 0);
@@ -824,7 +706,11 @@ namespace WinAuth
 					ali.LastUpdate = DateTime.Now;
 					ali.DisplayUntil = DateTime.Now.AddSeconds(10);
 				}
-				authenticatorList.Items.Add(ali);
+
+				if ( searchString=="" || ali.Authenticator.Name.ToLower().Contains(searchString.ToLower()))
+				{
+					authenticatorList.Items.Add(ali);
+				}
 				index++;
 			}
 
@@ -1030,17 +916,6 @@ namespace WinAuth
 				}
 			})).Start();
 #endif
-#if NETFX_3
-			foreach (var auth in this.Config)
-			{
-				if (auth.AuthenticatorData != null && auth.AuthenticatorData is SteamAuthenticator)
-				{
-					var client = ((SteamAuthenticator)auth.AuthenticatorData).GetClient();
-					client.ConfirmationEvent += SteamClient_ConfirmationEvent;
-					client.ConfirmationErrorEvent += SteamClient_ConfirmationErrorEvent;
-				}
-			}
-#endif
 		}
 
 		/// <summary>
@@ -1198,46 +1073,6 @@ namespace WinAuth
 				if (m_hook != null)
 				{
 					m_hook.KeyCallback(new KeyboardHookEventArgs(key, modifier));
-				}
-			}
-			else if (m.Msg == WinAPI.WM_DEVICECHANGE)
-			{
-				int wParam = (int)m.WParam;
-				if (wParam == WinAPI.DBT_DEVICEARRIVAL)
-				{
-					lock (m_deviceArrivalMutex)
-					{
-						if (this.Config == null || (this.Config.PasswordType & (Authenticator.PasswordTypes.YubiKeySlot1 | Authenticator.PasswordTypes.YubiKeySlot2)) != 0 && m_yubis.Count == 0)
-						{
-							m_yubis = HIDDevice.GetAllDevices(YubiKey.VENDOR_ID);
-							if (m_yubis.Count != 0)
-							{
-								this.authenticatorList.Items.Clear();
-								this.Size = m_initialSize;
-								this.Config = null;
-								loadNotifyMenu(this.notifyMenu);
-								UnhookHotkeys();
-								loadConfig(string.Empty);
-							}
-						}
-					}
-				}
-				else if (wParam == WinAPI.DBT_DEVICEREMOVED)
-				{
-					if (this.Config != null && (this.Config.PasswordType & (Authenticator.PasswordTypes.YubiKeySlot1 | Authenticator.PasswordTypes.YubiKeySlot2)) != 0)
-					{
-						// check if YubiKey still present
-						m_yubis = HIDDevice.GetAllDevices(YubiKey.VENDOR_ID);
-						if (m_yubis.Count == 0)
-						{
-							this.authenticatorList.Items.Clear();
-							this.Size = m_initialSize;
-							this.Config = null;
-							loadNotifyMenu(this.notifyMenu);
-							UnhookHotkeys();
-							loadConfig(string.Empty);
-						}
-					}
 				}
 			}
 			else if (m.Msg == WinAPI.WM_USER + 1)
@@ -1647,9 +1482,6 @@ namespace WinAuth
 			// remove the hotkey hook
 			UnhookHotkeys();
 
-			// remove USB hook
-			WinAPI.UnregisterUsbDeviceNotification(m_usbHandle);
-
 			// ensure the notify icon is closed
 			notifyIcon.Visible = false;
 
@@ -1704,24 +1536,6 @@ namespace WinAuth
 					form.Authenticator = winauthauthenticator;
 					added = (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK);
 				}
-				else if (registeredauth.AuthenticatorType == RegisteredAuthenticator.AuthenticatorTypes.Trion)
-				{
-					// create the Trion authenticator
-					int existing = 0;
-					string name;
-					do
-					{
-						name = "Trion" + (existing != 0 ? " (" + existing + ")" : string.Empty);
-						existing++;
-					} while (authenticatorList.Items.Cast<AuthenticatorListitem>().Where(a => a.Authenticator.Name == name).Count() != 0);
-
-					winauthauthenticator.Name = name;
-					winauthauthenticator.AutoRefresh = false;
-
-					AddTrionAuthenticator form = new AddTrionAuthenticator();
-					form.Authenticator = winauthauthenticator;
-					added = (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK);
-				}
 				else if (registeredauth.AuthenticatorType == RegisteredAuthenticator.AuthenticatorTypes.Steam)
 				{
 					// create the authenticator
@@ -1755,23 +1569,6 @@ namespace WinAuth
 					winauthauthenticator.AutoRefresh = false;
 
 					AddGoogleAuthenticator form = new AddGoogleAuthenticator();
-					form.Authenticator = winauthauthenticator;
-					added = (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK);
-				}
-				else if (registeredauth.AuthenticatorType == RegisteredAuthenticator.AuthenticatorTypes.GuildWars)
-				{
-					// create the GW2 authenticator
-					int existing = 0;
-					string name;
-					do
-					{
-						name = "GuildWars" + (existing != 0 ? " (" + existing + ")" : string.Empty);
-						existing++;
-					} while (authenticatorList.Items.Cast<AuthenticatorListitem>().Where(a => a.Authenticator.Name == name).Count() != 0);
-					winauthauthenticator.Name = name;
-					winauthauthenticator.AutoRefresh = false;
-
-					AddGuildWarsAuthenticator form = new AddGuildWarsAuthenticator();
 					form.Authenticator = winauthauthenticator;
 					added = (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK);
 				}
@@ -1845,7 +1642,6 @@ namespace WinAuth
 						form.PasswordType = Authenticator.PasswordTypes.Explicit;
 						if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
 						{
-							this.Config.Yubi = form.Yubikey;
 							this.Config.PasswordType = form.PasswordType;
 							if ((this.Config.PasswordType & Authenticator.PasswordTypes.Explicit) != 0 && string.IsNullOrEmpty(form.Password) == false)
 							{
@@ -2085,6 +1881,31 @@ namespace WinAuth
 		}
 
 		/// <summary>
+		/// Filtering the list
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void searchTextbox_changed(object sender, EventArgs e)
+		{
+			string txt = this.searchTextbox.Text.Trim();
+			if (initialColor == null)
+				initialColor = searchTextbox.BackColor;
+			if (txt!="")
+			{
+				searchString = txt;
+				searchTextbox.BackColor = Color.LightCoral;
+			}
+			else
+			{
+				searchString = "";
+				searchTextbox.BackColor = initialColor;
+			}
+			loadAuthenticatorList();
+		}
+		Color initialColor;
+		string searchString="";
+
+		/// <summary>
 		/// Remove the password error message after a few seconds
 		/// </summary>
 		/// <param name="sender"></param>
@@ -2112,15 +1933,14 @@ namespace WinAuth
 				passwordButton_Click(sender, null);
 			}
 		}
-
 		/// <summary>
-		/// Click the button to check the YubiKey again
+		/// Catch pressing Enter in the searchbox
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void yubiRetryButton_Click(object sender, EventArgs e)
-		{
-			loadConfig(this.passwordField.Text);
+		private void searchTextbox_KeyUp(object sender, KeyEventArgs e)
+		{ 
+			searchTextbox_changed(sender, null); 
 		}
 
 		/// <summary>
@@ -2493,10 +2313,6 @@ namespace WinAuth
 					retry = false;
 
 					this.Config.PasswordType = form.PasswordType;
-					if ((this.Config.PasswordType & (Authenticator.PasswordTypes.YubiKeySlot1 | Authenticator.PasswordTypes.YubiKeySlot2)) != 0 && form.Yubikey != null)
-					{
-						this.Config.Yubi = form.Yubikey;
-					}
 					if ((this.Config.PasswordType & Authenticator.PasswordTypes.Explicit) != 0 && string.IsNullOrEmpty(form.Password) == false)
 					{
 						this.Config.Password = form.Password;
@@ -2509,16 +2325,6 @@ namespace WinAuth
 					catch (InvalidEncryptionException)
 					{
 						var result = WinAuthForm.ConfirmDialog(this, "Decryption test failed. Retry?", MessageBoxButtons.YesNo);
-						if (result == DialogResult.Yes)
-						{
-							retry = true;
-							continue;
-						}
-						this.Config.PasswordType = retrypasswordtype;
-					}
-					catch (ChallengeResponseException)
-					{
-						var result = WinAuthForm.ConfirmDialog(this, "YubiKey Challenge/Response failed. Retry?", MessageBoxButtons.YesNo);
 						if (result == DialogResult.Yes)
 						{
 							retry = true;

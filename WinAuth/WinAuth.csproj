@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WinAuth</RootNamespace>
     <AssemblyName>WinAuth</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -64,8 +64,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Net4.5\bin\Debug\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\obj\Debug\</IntermediateOutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\Debug\</IntermediateOutputPath>
     <DefineConstants>TRACE;DEBUG;NETFX_4,NETFX_45,BETA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -76,8 +76,8 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Net4.5\bin\Release\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\obj\Release\</IntermediateOutputPath>
+    <OutputPath>bin\Release\</OutputPath>
+    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE;NETFX_4,NETFX_45,BETA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -124,8 +124,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Net4.5\x64\bin\Debug\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\x64\obj\Debug\</IntermediateOutputPath>
+    <OutputPath>x64\bin\Debug\</OutputPath>
+    <IntermediateOutputPath>x64\obj\Debug\</IntermediateOutputPath>
     <DefineConstants>TRACE;DEBUG;NETFX_4,BETA</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -134,8 +134,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\Net4.5\x64\bin\Release\</OutputPath>
-    <IntermediateOutputPath>..\Net4.5\x64\obj\Release\</IntermediateOutputPath>
+    <OutputPath>x64\bin\Release\</OutputPath>
+    <IntermediateOutputPath>x64\obj\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE;NETFX_4,BETA</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -146,28 +146,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.7.4137.9688, Culture=neutral, PublicKeyToken=a4292a325f69b123, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlRenderer, Version=1.5.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\HtmlRenderer.Core.1.5.0.5\lib\net45\HtmlRenderer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="HtmlRenderer, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.6\lib\net45\HtmlRenderer.dll</HintPath>
     </Reference>
     <Reference Include="HtmlRenderer.WinForms, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\HtmlRenderer.WinForms.1.5.0.6\lib\net45\HtmlRenderer.WinForms.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\HtmlRenderer.WinForms.1.5.0.6\lib\net45\HtmlRenderer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -182,12 +176,10 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
     </Reference>
     <Reference Include="zxing.presentation, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>..\Net4.5\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -202,12 +194,6 @@
     </Compile>
     <Compile Include="AddGoogleAuthenticator.designer.cs">
       <DependentUpon>AddGoogleAuthenticator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddGuildWarsAuthenticator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddGuildWarsAuthenticator.designer.cs">
-      <DependentUpon>AddGuildWarsAuthenticator.cs</DependentUpon>
     </Compile>
     <Compile Include="AddMicrosoftAuthenticator.cs">
       <SubType>Form</SubType>
@@ -237,12 +223,6 @@
     </Compile>
     <Compile Include="ShowSteamTradesForm.designer.cs">
       <DependentUpon>ShowSteamTradesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddTrionAuthenticator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddTrionAuthenticator.designer.cs">
-      <DependentUpon>AddTrionAuthenticator.cs</DependentUpon>
     </Compile>
     <Compile Include="AuthenticatorListBox.cs" />
     <Compile Include="BetaForm.cs">
@@ -314,7 +294,6 @@
       <DependentUpon>SetShortcutKeyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SingleGlobalInstance.cs" />
-    <Compile Include="Tuple.cs" />
     <Compile Include="UnprotectPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,12 +342,6 @@
     <Compile Include="ShowSecretKeyForm.designer.cs">
       <DependentUpon>ShowSecretKeyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShowTrionSecretForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ShowTrionSecretForm.designer.cs">
-      <DependentUpon>ShowTrionSecretForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="UpdateCheckForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,10 +370,6 @@
     <EmbeddedResource Include="AddGoogleAuthenticator.resx">
       <DependentUpon>AddGoogleAuthenticator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddGuildWarsAuthenticator.resx">
-      <DependentUpon>AddGuildWarsAuthenticator.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddMicrosoftAuthenticator.resx">
       <DependentUpon>AddMicrosoftAuthenticator.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -413,9 +382,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShowSteamTradesForm.resx">
       <DependentUpon>ShowSteamTradesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddTrionAuthenticator.resx">
-      <DependentUpon>AddTrionAuthenticator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BetaForm.resx">
       <DependentUpon>BetaForm.cs</DependentUpon>
@@ -475,9 +441,6 @@
     <EmbeddedResource Include="ShowSecretKeyForm.resx">
       <DependentUpon>ShowSecretKeyForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShowTrionSecretForm.resx">
-      <DependentUpon>ShowTrionSecretForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UpdateCheckForm.resx">
       <DependentUpon>UpdateCheckForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -505,13 +468,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\BattleNetAuthenticatorIcon.png" />
     <EmbeddedResource Include="Resources\GoogleAuthenticatorIcon.png" />
-    <EmbeddedResource Include="Resources\GuildWarsAuthenticatorIcon.png" />
     <EmbeddedResource Include="Resources\RefreshIcon.png" />
     <EmbeddedResource Include="Resources\MicrosoftAuthenticatorIcon.png" />
     <None Include="Resources\OptionsIcon.png" />
-    <EmbeddedResource Include="Resources\TrionAuthenticatorIcon.png" />
     <EmbeddedResource Include="Resources\RiftIcon.png" />
-    <None Include="Resources\trion.png" />
     <None Include="Resources\battlenet.png" />
     <EmbeddedResource Include="Resources\DiabloIcon.png" />
     <EmbeddedResource Include="Resources\DefianceIcon.png" />
@@ -558,7 +518,6 @@
     <EmbeddedResource Include="Resources\TeamviewerIcon.png" />
     <EmbeddedResource Include="Resources\LastPassIcon.png" />
     <EmbeddedResource Include="Resources\ArcheAgeIcon.png" />
-    <EmbeddedResource Include="Resources\GlyphIcon.png" />
     <EmbeddedResource Include="Resources\SteamAuthenticatorIcon.png" />
     <EmbeddedResource Include="Resources\SteamIcon.png" />
     <None Include="images\spinner24.gif" />

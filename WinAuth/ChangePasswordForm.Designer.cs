@@ -44,30 +44,12 @@
 			this.passwordFieldLabel = new MetroFramework.Controls.MetroLabel();
 			this.machineLabel = new MetroFramework.Controls.MetroLabel();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			this.yubikeyBox = new MetroFramework.Controls.MetroCheckBox();
-			this.yubiSlotToggle = new MetroFramework.Controls.MetroToggle();
-			this.yubiPressToggle = new MetroFramework.Controls.MetroToggle();
-			this.yubiSecretUpdateButton = new MetroFramework.Controls.MetroButton();
-			this.yubiCreateSecretButton = new MetroFramework.Controls.MetroButton();
-			this.yubiSecretField = new MetroFramework.Controls.MetroTextBox();
 			this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
 			this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-			this.yubikeyStatusLabel = new MetroFramework.Controls.MetroLabel();
-			this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-			this.yubikeyCheckButton = new MetroFramework.Controls.MetroButton();
-			this.yubikeyCreateButton = new MetroFramework.Controls.MetroButton();
 			this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-			this.yubiPanelExistsText = new MetroFramework.Controls.MetroLabel();
-			this.yubiPanelIntro = new System.Windows.Forms.Panel();
-			this.yubiPanelConfigure = new System.Windows.Forms.Panel();
-			this.yubiConfigureIntroLabel = new MetroFramework.Controls.MetroLabel();
-			this.yubiPanelExists = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-			this.yubiPanelIntro.SuspendLayout();
-			this.yubiPanelConfigure.SuspendLayout();
-			this.yubiPanelExists.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// introLabel
@@ -240,74 +222,6 @@
 			this.pictureBox3.TabIndex = 7;
 			this.pictureBox3.TabStop = false;
 			// 
-			// yubikeyBox
-			// 
-			this.yubikeyBox.AutoSize = true;
-			this.yubikeyBox.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-			this.yubikeyBox.Location = new System.Drawing.Point(27, 434);
-			this.yubikeyBox.Name = "yubikeyBox";
-			this.yubikeyBox.Size = new System.Drawing.Size(147, 19);
-			this.yubikeyBox.TabIndex = 3;
-			this.yubikeyBox.Text = "Lock with a YubiKey";
-			this.yubikeyBox.UseSelectable = true;
-			this.yubikeyBox.CheckedChanged += new System.EventHandler(this.yubikeyBox_CheckedChanged);
-			// 
-			// yubiSlotToggle
-			// 
-			this.yubiSlotToggle.AutoSize = true;
-			this.yubiSlotToggle.Location = new System.Drawing.Point(51, 51);
-			this.yubiSlotToggle.Name = "yubiSlotToggle";
-			this.yubiSlotToggle.OffText = "1";
-			this.yubiSlotToggle.OnText = "2";
-			this.yubiSlotToggle.Size = new System.Drawing.Size(80, 17);
-			this.yubiSlotToggle.TabIndex = 11;
-			this.yubiSlotToggle.Text = "1";
-			this.yubiSlotToggle.UseSelectable = true;
-			// 
-			// yubiPressToggle
-			// 
-			this.yubiPressToggle.AutoSize = true;
-			this.yubiPressToggle.Location = new System.Drawing.Point(216, 45);
-			this.yubiPressToggle.Name = "yubiPressToggle";
-			this.yubiPressToggle.OffText = null;
-			this.yubiPressToggle.OnText = null;
-			this.yubiPressToggle.Size = new System.Drawing.Size(80, 17);
-			this.yubiPressToggle.TabIndex = 11;
-			this.yubiPressToggle.Text = "Off";
-			this.yubiPressToggle.UseSelectable = true;
-			// 
-			// yubiSecretUpdateButton
-			// 
-			this.yubiSecretUpdateButton.Location = new System.Drawing.Point(490, 45);
-			this.yubiSecretUpdateButton.Name = "yubiSecretUpdateButton";
-			this.yubiSecretUpdateButton.Size = new System.Drawing.Size(100, 23);
-			this.yubiSecretUpdateButton.TabIndex = 10;
-			this.yubiSecretUpdateButton.Text = "Update Slot";
-			this.yubiSecretUpdateButton.UseSelectable = true;
-			this.yubiSecretUpdateButton.Click += new System.EventHandler(this.yubiSecretUpdateButton_Click);
-			// 
-			// yubiCreateSecretButton
-			// 
-			this.yubiCreateSecretButton.Location = new System.Drawing.Point(600, 11);
-			this.yubiCreateSecretButton.Name = "yubiCreateSecretButton";
-			this.yubiCreateSecretButton.Size = new System.Drawing.Size(75, 23);
-			this.yubiCreateSecretButton.TabIndex = 10;
-			this.yubiCreateSecretButton.Text = "Random";
-			this.yubiCreateSecretButton.UseSelectable = true;
-			this.yubiCreateSecretButton.Click += new System.EventHandler(this.yubiCreateSecretButton_Click);
-			// 
-			// yubiSecretField
-			// 
-			this.yubiSecretField.Location = new System.Drawing.Point(79, 11);
-			this.yubiSecretField.MaxLength = 32767;
-			this.yubiSecretField.Name = "yubiSecretField";
-			this.yubiSecretField.PasswordChar = '\0';
-			this.yubiSecretField.ScrollBars = System.Windows.Forms.ScrollBars.None;
-			this.yubiSecretField.SelectedText = "";
-			this.yubiSecretField.Size = new System.Drawing.Size(511, 23);
-			this.yubiSecretField.TabIndex = 9;
-			this.yubiSecretField.UseSelectable = true;
-			// 
 			// metroLabel4
 			// 
 			this.metroLabel4.Location = new System.Drawing.Point(78, 43);
@@ -324,46 +238,6 @@
 			this.metroLabel3.TabIndex = 1;
 			this.metroLabel3.Text = "Slot";
 			// 
-			// yubikeyStatusLabel
-			// 
-			this.yubikeyStatusLabel.Location = new System.Drawing.Point(419, 434);
-			this.yubikeyStatusLabel.Name = "yubikeyStatusLabel";
-			this.yubikeyStatusLabel.Size = new System.Drawing.Size(322, 27);
-			this.yubikeyStatusLabel.TabIndex = 1;
-			this.yubikeyStatusLabel.Text = "Status";
-			this.yubikeyStatusLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			this.yubikeyStatusLabel.Visible = false;
-			// 
-			// metroLabel1
-			// 
-			this.metroLabel1.Location = new System.Drawing.Point(3, 1);
-			this.metroLabel1.Name = "metroLabel1";
-			this.metroLabel1.Size = new System.Drawing.Size(692, 47);
-			this.metroLabel1.TabIndex = 1;
-			this.metroLabel1.Text = "Your YubiKey must support Challenge-Response using HMAC-SHA1 in one of its slots." +
-    " Use the YubiKey personalization tool to configure the slot or click the Configu" +
-    "re Slot button.";
-			// 
-			// yubikeyCheckButton
-			// 
-			this.yubikeyCheckButton.Location = new System.Drawing.Point(81, 89);
-			this.yubikeyCheckButton.Name = "yubikeyCheckButton";
-			this.yubikeyCheckButton.Size = new System.Drawing.Size(100, 23);
-			this.yubikeyCheckButton.TabIndex = 5;
-			this.yubikeyCheckButton.Text = "Use Slot";
-			this.yubikeyCheckButton.UseSelectable = true;
-			this.yubikeyCheckButton.Click += new System.EventHandler(this.yubikeyCheckButton_Click);
-			// 
-			// yubikeyCreateButton
-			// 
-			this.yubikeyCreateButton.Location = new System.Drawing.Point(190, 89);
-			this.yubikeyCreateButton.Name = "yubikeyCreateButton";
-			this.yubikeyCreateButton.Size = new System.Drawing.Size(100, 23);
-			this.yubikeyCreateButton.TabIndex = 5;
-			this.yubikeyCreateButton.Text = "Configure Slot";
-			this.yubikeyCreateButton.UseSelectable = true;
-			this.yubikeyCreateButton.Click += new System.EventHandler(this.yubikeyCreateButton_Click);
-			// 
 			// metroLabel5
 			// 
 			this.metroLabel5.Location = new System.Drawing.Point(-1, 11);
@@ -371,63 +245,6 @@
 			this.metroLabel5.Size = new System.Drawing.Size(73, 23);
 			this.metroLabel5.TabIndex = 12;
 			this.metroLabel5.Text = "Passphrase";
-			// 
-			// yubiPanelExistsText
-			// 
-			this.yubiPanelExistsText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.yubiPanelExistsText.Location = new System.Drawing.Point(14, 16);
-			this.yubiPanelExistsText.Name = "yubiPanelExistsText";
-			this.yubiPanelExistsText.Size = new System.Drawing.Size(260, 51);
-			this.yubiPanelExistsText.TabIndex = 13;
-			this.yubiPanelExistsText.Text = "Your YubiKey has already been assigned to protect your authenticators.  To remove" +
-    " it you must untick the above checkbox and click OK.";
-			// 
-			// yubiPanelIntro
-			// 
-			this.yubiPanelIntro.Controls.Add(this.yubiPanelConfigure);
-			this.yubiPanelIntro.Controls.Add(this.yubiConfigureIntroLabel);
-			this.yubiPanelIntro.Controls.Add(this.metroLabel1);
-			this.yubiPanelIntro.Controls.Add(this.yubiSlotToggle);
-			this.yubiPanelIntro.Controls.Add(this.metroLabel3);
-			this.yubiPanelIntro.Controls.Add(this.yubikeyCheckButton);
-			this.yubiPanelIntro.Controls.Add(this.yubikeyCreateButton);
-			this.yubiPanelIntro.Enabled = false;
-			this.yubiPanelIntro.Location = new System.Drawing.Point(43, 463);
-			this.yubiPanelIntro.Name = "yubiPanelIntro";
-			this.yubiPanelIntro.Size = new System.Drawing.Size(698, 149);
-			this.yubiPanelIntro.TabIndex = 14;
-			// 
-			// yubiPanelConfigure
-			// 
-			this.yubiPanelConfigure.Controls.Add(this.metroLabel4);
-			this.yubiPanelConfigure.Controls.Add(this.yubiPressToggle);
-			this.yubiPanelConfigure.Controls.Add(this.yubiSecretField);
-			this.yubiPanelConfigure.Controls.Add(this.yubiSecretUpdateButton);
-			this.yubiPanelConfigure.Controls.Add(this.yubiCreateSecretButton);
-			this.yubiPanelConfigure.Controls.Add(this.metroLabel5);
-			this.yubiPanelConfigure.Location = new System.Drawing.Point(3, 70);
-			this.yubiPanelConfigure.Name = "yubiPanelConfigure";
-			this.yubiPanelConfigure.Size = new System.Drawing.Size(692, 76);
-			this.yubiPanelConfigure.TabIndex = 12;
-			// 
-			// yubiConfigureIntroLabel
-			// 
-			this.yubiConfigureIntroLabel.Location = new System.Drawing.Point(151, 49);
-			this.yubiConfigureIntroLabel.Name = "yubiConfigureIntroLabel";
-			this.yubiConfigureIntroLabel.Size = new System.Drawing.Size(536, 23);
-			this.yubiConfigureIntroLabel.TabIndex = 1;
-			this.yubiConfigureIntroLabel.Text = "Enter a pass phrase, or choose Random, then press Update Slot to configure your Y" +
-    "ubikey.";
-			// 
-			// yubiPanelExists
-			// 
-			this.yubiPanelExists.Controls.Add(this.yubiPanelExistsText);
-			this.yubiPanelExists.Location = new System.Drawing.Point(447, 330);
-			this.yubiPanelExists.Name = "yubiPanelExists";
-			this.yubiPanelExists.Size = new System.Drawing.Size(291, 69);
-			this.yubiPanelExists.TabIndex = 15;
-			this.yubiPanelExists.Visible = false;
 			// 
 			// ChangePasswordForm
 			// 
@@ -437,11 +254,7 @@
 			this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(772, 673);
-			this.Controls.Add(this.yubiPanelExists);
-			this.Controls.Add(this.yubiPanelIntro);
-			this.Controls.Add(this.yubikeyBox);
 			this.Controls.Add(this.pictureBox3);
-			this.Controls.Add(this.yubikeyStatusLabel);
 			this.Controls.Add(this.verifyField);
 			this.Controls.Add(this.passwordField);
 			this.Controls.Add(this.verifyFieldLabel);
@@ -464,11 +277,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-			this.yubiPanelIntro.ResumeLayout(false);
-			this.yubiPanelIntro.PerformLayout();
-			this.yubiPanelConfigure.ResumeLayout(false);
-			this.yubiPanelConfigure.PerformLayout();
-			this.yubiPanelExists.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -491,24 +299,8 @@
 		private MetroFramework.Controls.MetroLabel passwordFieldLabel;
 		private MetroFramework.Controls.MetroLabel machineLabel;
 		private System.Windows.Forms.PictureBox pictureBox3;
-		private MetroFramework.Controls.MetroCheckBox yubikeyBox;
-		private MetroFramework.Controls.MetroLabel yubikeyStatusLabel;
-		private MetroFramework.Controls.MetroLabel metroLabel1;
-		private MetroFramework.Controls.MetroButton yubikeyCreateButton;
-		private MetroFramework.Controls.MetroButton yubikeyCheckButton;
-		private MetroFramework.Controls.MetroTextBox yubiSecretField;
-		private MetroFramework.Controls.MetroButton yubiCreateSecretButton;
-		private MetroFramework.Controls.MetroButton yubiSecretUpdateButton;
-		private MetroFramework.Controls.MetroToggle yubiSlotToggle;
-		private MetroFramework.Controls.MetroToggle yubiPressToggle;
 		private MetroFramework.Controls.MetroLabel metroLabel4;
 		private MetroFramework.Controls.MetroLabel metroLabel3;
 		private MetroFramework.Controls.MetroLabel metroLabel5;
-		private MetroFramework.Controls.MetroLabel yubiPanelExistsText;
-		private System.Windows.Forms.Panel yubiPanelIntro;
-		private System.Windows.Forms.Panel yubiPanelConfigure;
-		private System.Windows.Forms.Panel yubiPanelExists;
-		private MetroFramework.Controls.MetroLabel yubiConfigureIntroLabel;
-
 	}
 }

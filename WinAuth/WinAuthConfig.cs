@@ -80,11 +80,6 @@ namespace WinAuth
 		public string Password { protected get; set; }
 
 		/// <summary>
-		/// Save Yubi key for re-saving and encrypting file
-		/// </summary>
-		public YubiKey Yubi { get; set; }
-
-		/// <summary>
 		/// If the config was upgraded
 		/// </summary>
 		public bool Upgraded { get; set; }
@@ -110,10 +105,6 @@ namespace WinAuth
 				if ((_passwordType & Authenticator.PasswordTypes.Explicit) == 0)
 				{
 					this.Password = null;
-				}
-				if ((_passwordType & (Authenticator.PasswordTypes.YubiKeySlot1 | Authenticator.PasswordTypes.YubiKeySlot2)) == 0)
-				{
-					this.Yubi = null;
 				}
 			}
 		}
@@ -829,12 +820,7 @@ namespace WinAuth
         // read the encrypted text from the node
         string data = reader.ReadElementContentAsString();
         // decrypt
-				YubiKey yubi = null;
-				if ((this.PasswordType & (Authenticator.PasswordTypes.YubiKeySlot1 | Authenticator.PasswordTypes.YubiKeySlot2)) != 0 /* && this.Yubi == null */)
-				{
-					yubi = YubiKey.CreateInstance();
-				}
-				data = Authenticator.DecryptSequence(data, this.PasswordType, password, yubi);
+				data = Authenticator.DecryptSequence(data, this.PasswordType, password);
 
 				using (MemoryStream ms = new MemoryStream(Authenticator.StringToByteArray(data)))
 				{
@@ -844,7 +830,6 @@ namespace WinAuth
 
 				this.PasswordType = Authenticator.DecodePasswordTypes(encrypted);
 				this.Password = password;
-				this.Yubi = yubi;
 
         return changed;
       }
@@ -896,17 +881,10 @@ namespace WinAuth
                   string data = reader.ReadElementContentAsString();
 
 									hasher.ComputeHash(Authenticator.StringToByteArray(data));
-#if !NETFX_3
                   hasher.Dispose();
-#endif
 
                   // decrypt
-                  YubiKey yubi = null;
-									if ((this.PasswordType & (Authenticator.PasswordTypes.YubiKeySlot1 | Authenticator.PasswordTypes.YubiKeySlot2)) != 0 /* && this.Yubi == null */)
-									{
-										yubi = YubiKey.CreateInstance();
-									}
-									data = Authenticator.DecryptSequence(data, this.PasswordType, password, yubi);
+									data = Authenticator.DecryptSequence(data, this.PasswordType, password);
 									byte[] plain = Authenticator.StringToByteArray(data);
 
 									using (MemoryStream ms = new MemoryStream(plain))
@@ -917,7 +895,6 @@ namespace WinAuth
 
 									this.PasswordType = Authenticator.DecodePasswordTypes(encrypted);
 									this.Password = password;
-									this.Yubi = yubi;
 								}
 							}
 							break;
@@ -1012,14 +989,6 @@ namespace WinAuth
               if (waold.AuthenticatorData is BattleNetAuthenticator)
               {
                 waold.Name = "Battle.net";
-              }
-              else if (waold.AuthenticatorData is GuildWarsAuthenticator)
-              {
-                waold.Name = "GuildWars 2";
-              }
-              else if (waold.AuthenticatorData is GuildWarsAuthenticator)
-              {
-                waold.Name = "Authenticator";
               }
               this.Add(waold);
               this.CurrentAuthenticator = waold;
@@ -1163,14 +1132,6 @@ namespace WinAuth
 				{
 					encryptedTypes.Append("m");
 				}
-				if ((PasswordType & Authenticator.PasswordTypes.YubiKeySlot1) != 0)
-				{
-					encryptedTypes.Append("a");
-				}
-				if ((PasswordType & Authenticator.PasswordTypes.YubiKeySlot2) != 0)
-				{
-					encryptedTypes.Append("b");
-				}
 				writer.WriteAttributeString("encrypted", encryptedTypes.ToString());
 
 				byte[] data;
@@ -1194,7 +1155,7 @@ namespace WinAuth
 
 				using (var hasher = Authenticator.SafeHasher("SHA1"))
 				{
-					string encdata = Authenticator.EncryptSequence(Authenticator.ByteArrayToString(data), PasswordType, Password, this.Yubi);
+					string encdata = Authenticator.EncryptSequence(Authenticator.ByteArrayToString(data), PasswordType, Password);
 					string enchash = Authenticator.ByteArrayToString(hasher.ComputeHash(Authenticator.StringToByteArray(encdata)));
 					writer.WriteAttributeString("sha1", enchash);
 					writer.WriteString(encdata);

@@ -2,15 +2,15 @@ namespace WinAuth
 {
     partial class AddAuthenticator
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+          /// <summary>
+          /// Required designer variable.
+          /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+          /// <summary>
+          /// Clean up any resources being used.
+          /// </summary>
+          /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +22,10 @@ namespace WinAuth
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
+          /// <summary>
+          /// Required method for Designer support - do not modify
+          /// the contents of this method with the code editor.
+          /// </summary>
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
@@ -57,6 +57,8 @@ namespace WinAuth
       this.digitsField = new MetroFramework.Controls.MetroTextBox();
       this.digitsLabel = new MetroFramework.Controls.MetroLabel();
       this.intervalLabelPost = new MetroFramework.Controls.MetroLabel();
+      this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+      this.dragImagePanel = new System.Windows.Forms.Panel();
       this.timeBasedPanel.SuspendLayout();
       this.counterBasedPanel.SuspendLayout();
       this.SuspendLayout();
@@ -65,7 +67,7 @@ namespace WinAuth
       // 
       this.secretCodeField.AllowDrop = true;
       this.secretCodeField.CausesValidation = false;
-      this.secretCodeField.Location = new System.Drawing.Point(43, 171);
+      this.secretCodeField.Location = new System.Drawing.Point(42, 140);
       this.secretCodeField.MaxLength = 32767;
       this.secretCodeField.Name = "secretCodeField";
       this.secretCodeField.PasswordChar = '\0';
@@ -74,16 +76,18 @@ namespace WinAuth
       this.secretCodeField.Size = new System.Drawing.Size(390, 22);
       this.secretCodeField.TabIndex = 1;
       this.secretCodeField.UseSelectable = true;
+      this.secretCodeField.DragDrop += new System.Windows.Forms.DragEventHandler(this.secretCodeField_dragdrop);
+      this.secretCodeField.DragEnter += new System.Windows.Forms.DragEventHandler(this.secretCodeField_DragEnter);
       this.secretCodeField.Leave += new System.EventHandler(this.secretCodeField_Leave);
       // 
       // step1Label
       // 
-      this.step1Label.Location = new System.Drawing.Point(28, 120);
+      this.step1Label.Location = new System.Drawing.Point(28, 98);
       this.step1Label.Name = "step1Label";
       this.step1Label.Size = new System.Drawing.Size(425, 48);
       this.step1Label.TabIndex = 1;
       this.step1Label.Text = "1. Enter the Secret Code or KeyUri string. Spaces don\'t matter. If you have a QR " +
-    "code, you can paste the URL of the image instead.\r\n";
+"code, you can paste the URL of the image instead.\r\n";
       // 
       // okButton
       // 
@@ -132,7 +136,7 @@ namespace WinAuth
       // 
       // step2Label
       // 
-      this.step2Label.Location = new System.Drawing.Point(28, 213);
+      this.step2Label.Location = new System.Drawing.Point(25, 210);
       this.step2Label.Name = "step2Label";
       this.step2Label.Size = new System.Drawing.Size(423, 49);
       this.step2Label.TabIndex = 10;
@@ -358,6 +362,26 @@ namespace WinAuth
       this.intervalLabelPost.TabIndex = 10;
       this.intervalLabelPost.Text = "seconds";
       // 
+      // metroLabel1
+      // 
+      this.metroLabel1.AutoSize = true;
+      this.metroLabel1.Location = new System.Drawing.Point(223, 177);
+      this.metroLabel1.Name = "metroLabel1";
+      this.metroLabel1.Size = new System.Drawing.Size(101, 19);
+      this.metroLabel1.TabIndex = 16;
+      this.metroLabel1.Text = "Or drag image:";
+      // 
+      // dragImagePanel
+      // 
+      this.dragImagePanel.AllowDrop = true;
+      this.dragImagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      this.dragImagePanel.Location = new System.Drawing.Point(330, 168);
+      this.dragImagePanel.Name = "dragImagePanel";
+      this.dragImagePanel.Size = new System.Drawing.Size(61, 39);
+      this.dragImagePanel.TabIndex = 17;
+      this.dragImagePanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragPanel_DragDrop);
+      this.dragImagePanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.dragPanel_DragEnter);
+      // 
       // AddAuthenticator
       // 
       this.AcceptButton = this.okButton;
@@ -366,6 +390,8 @@ namespace WinAuth
       this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
       this.CancelButton = this.cancelButton;
       this.ClientSize = new System.Drawing.Size(471, 641);
+      this.Controls.Add(this.dragImagePanel);
+      this.Controls.Add(this.metroLabel1);
       this.Controls.Add(this.hashField);
       this.Controls.Add(this.counterBasedPanel);
       this.Controls.Add(this.timeBasedPanel);
@@ -431,5 +457,7 @@ namespace WinAuth
     private MetroFramework.Controls.MetroTextBox digitsField;
     private MetroFramework.Controls.MetroLabel digitsLabel;
     private MetroFramework.Controls.MetroLabel intervalLabelPost;
-  }
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private System.Windows.Forms.Panel dragImagePanel;
+    }
 }
