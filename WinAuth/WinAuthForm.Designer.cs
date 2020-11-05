@@ -235,18 +235,18 @@
             // 
             // searchTextbox
             // 
-			this.searchTextbox.Location = new System.Drawing.Point(140, 9);
+			this.searchTextbox.Location = new System.Drawing.Point(160, 9);
 			this.searchTextbox.MaxLength = 800;
 			this.searchTextbox.Name = "searchTextbox";
 			this.searchTextbox.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.searchTextbox.SelectedText = "";
-			this.searchTextbox.Size = new System.Drawing.Size(120, 20);
+			this.searchTextbox.Size = new System.Drawing.Size(100, 20);
 			this.searchTextbox.TabIndex = 0;
 			this.searchTextbox.UseSelectable = true;
-			this.searchTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyUp);
-            // 
-            // addAuthenticatorButton
-            // 
+			this.searchTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyUp); 
+			// 
+			// addAuthenticatorButton
+			// 
 			this.addAuthenticatorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.addAuthenticatorButton.Location = new System.Drawing.Point(0, 9);
 			this.addAuthenticatorButton.Name = "addAuthenticatorButton";

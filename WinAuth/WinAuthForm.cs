@@ -605,6 +605,7 @@ namespace WinAuth
 			loadingPanel.Visible = false;
 			passwordPanel.Visible = false;
 			commandPanel.Visible = true;
+			this.ActiveControl = this.searchTextbox;
 			introLabel.Visible = (this.Config.Count == 0);
 			authenticatorList.Visible = (this.Config.Count != 0);
 			this.addAuthenticatorButton.Visible = !this.Config.IsReadOnly;
