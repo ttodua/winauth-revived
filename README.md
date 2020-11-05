@@ -4,6 +4,8 @@ I've added only two things:
 - Option to drag &drop QR-image onto the Add-Authenticator window.
 
 
+// Original Readme //
+____
 
 # Windows Authenticator
 
