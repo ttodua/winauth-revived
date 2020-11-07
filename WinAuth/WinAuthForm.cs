@@ -460,6 +460,7 @@ namespace WinAuth
 						this.Config.UseTrayIcon = config.UseTrayIcon;
 						this.Config.AlwaysOnTop = config.AlwaysOnTop;
 						this.Config.CopySearchedSingle = config.CopySearchedSingle;
+						this.Config.AutoExitAfterCopy = config.AutoExitAfterCopy;
 
 						ChangePasswordForm form = new ChangePasswordForm();
 						form.PasswordType = Authenticator.PasswordTypes.Explicit;
@@ -722,6 +723,10 @@ namespace WinAuth
 			{
 				Clipboard.SetText(lastFound.Authenticator.CurrentCode);
 				noticeLabel.Text = "Copied!";
+				if (this.Config.AutoExitAfterCopy)
+				{
+					this.Close();
+				}
 			}
 			else if (authenticatorList.Items.Count == 0)
 			{
@@ -1291,6 +1296,10 @@ namespace WinAuth
 				if (command != null)
 				{
 					keysend.SendKeys(this, command, code);
+					if (this.Config.AutoExitAfterCopy && action== WinAuthConfig.NotifyActions.CopyToClipboard)
+					{
+						this.Close();
+					}
 				}
 			}
 		}
@@ -2039,6 +2048,11 @@ namespace WinAuth
 			menuitem.Click += copySearchedSingleOptionsMenuItem_Click;
 			menu.Items.Add(menuitem);
 
+			menuitem = new ToolStripMenuItem(strings.AutoExitAfterCopy);
+			menuitem.Name = "autoExitAfterCopyOptionsMenuItem";
+			menuitem.Click += autoExitAfterCopyOptionsMenuItem_Click;
+			menu.Items.Add(menuitem);
+
 			menu.Items.Add(new ToolStripSeparator());
 
 			menuitem = new ToolStripMenuItem(strings.MenuExport);
@@ -2233,6 +2247,13 @@ namespace WinAuth
 			if (menuitem != null)
 			{
 				menuitem.Checked = this.Config.CopySearchedSingle;
+			}
+			
+
+			menuitem = menu.Items.Cast<ToolStripItem>().Where(t => t.Name == "autoExitAfterCopyOptionsMenuItem").FirstOrDefault() as ToolStripMenuItem;
+			if (menuitem != null)
+			{
+				menuitem.Checked = this.Config.AutoExitAfterCopy;
 			}
 
 			menuitem = menu.Items.Cast<ToolStripItem>().Where(t => t.Name == "autoSizeOptionsMenuItem").FirstOrDefault() as ToolStripMenuItem;
@@ -2479,6 +2500,16 @@ namespace WinAuth
 		private void copySearchedSingleOptionsMenuItem_Click(object sender, EventArgs e)
 		{
 			this.Config.CopySearchedSingle = !this.Config.CopySearchedSingle;
+		}
+
+		/// <summary>
+		/// Automatically exit program after code is copied
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void autoExitAfterCopyOptionsMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Config.AutoExitAfterCopy = !this.Config.AutoExitAfterCopy;
 		}
 
 		/// <summary>

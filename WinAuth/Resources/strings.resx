@@ -222,6 +222,9 @@ Would you like to import your previous authenticator now?</value>
   <data name="CopySearchedSingle" xml:space="preserve">
     <value>Copy Searched Single</value>
   </data>
+  <data name="AutoExitAfterCopy" xml:space="preserve">
+    <value>Auto-close WinAuth after code is copied</value>
+  </data>
   <data name="MenuChangeProtection" xml:space="preserve">
     <value>Change Protection</value>
   </data>

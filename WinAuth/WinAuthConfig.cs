@@ -131,6 +131,11 @@ namespace WinAuth
     private bool _copySearchedSingle;
 
     /// <summary>
+    /// Flag to copy the searched single
+    /// </summary>
+    private bool _autoExitAfterCopy;
+
+    /// <summary>
     /// Flag to use tray icon
     /// </summary>
     private bool _useTrayIcon;
@@ -254,6 +259,24 @@ namespace WinAuth
         if (OnConfigChanged != null)
         {
           OnConfigChanged(this, new ConfigChangedEventArgs("CopySearchedSingle"));
+        }
+      }
+    }
+    /// <summary>
+    /// Get/set AutoExitAfterCopy
+    /// </summary>
+    public bool AutoExitAfterCopy
+		{
+      get
+      {
+        return _autoExitAfterCopy;
+      }
+      set
+      {
+        _autoExitAfterCopy = value;
+        if (OnConfigChanged != null)
+        {
+          OnConfigChanged(this, new ConfigChangedEventArgs("AutoExitAfterCopy"));
         }
       }
     }
@@ -953,6 +976,10 @@ namespace WinAuth
 							_copySearchedSingle = reader.ReadElementContentAsBoolean();
 							break;
 
+						case "autoexitaftercopy":
+							_autoExitAfterCopy = reader.ReadElementContentAsBoolean();
+							break;
+
 						case "left":
 							_position.X = reader.ReadElementContentAsInt();
 							break;
@@ -1096,6 +1123,10 @@ namespace WinAuth
       //
       writer.WriteStartElement("copysearchedsingle");
       writer.WriteValue(this.CopySearchedSingle);
+      writer.WriteEndElement();
+      //
+      writer.WriteStartElement("autoexitaftercopy");
+      writer.WriteValue(this.AutoExitAfterCopy);
       writer.WriteEndElement();
       //
       writer.WriteStartElement("usetrayicon");

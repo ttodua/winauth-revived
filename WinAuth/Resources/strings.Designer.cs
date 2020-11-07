@@ -667,6 +667,15 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto-close WinAuth after code is copied.
+        /// </summary>
+        internal static string AutoExitAfterCopy {
+            get {
+                return ResourceManager.GetString("AutoExitAfterCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Refresh.
         /// </summary>
         internal static string AutoRefresh {
