@@ -216,8 +216,11 @@ Would you like to import your previous authenticator now?</value>
 	<data name="MenuAlwaysOnTop" xml:space="preserve">
     <value>总在最前</value>
   </data>
-	<data name="MenuAutoSize" xml:space="preserve">
+  <data name="MenuAutoSize" xml:space="preserve">
     <value>Auto Size</value>
+  </data>
+  <data name="CopySearchedSingle" xml:space="preserve">
+    <value>Copy Searched Single</value>
   </data>
 	<data name="MenuChangeProtection" xml:space="preserve">
     <value>修改保护设置</value>

@@ -126,6 +126,11 @@ namespace WinAuth
     private bool _alwaysOnTop;
 
     /// <summary>
+    /// Flag to copy the searched single
+    /// </summary>
+    private bool _copySearchedSingle;
+
+    /// <summary>
     /// Flag to use tray icon
     /// </summary>
     private bool _useTrayIcon;
@@ -231,6 +236,24 @@ namespace WinAuth
         if (OnConfigChanged != null)
         {
           OnConfigChanged(this, new ConfigChangedEventArgs("AlwaysOnTop"));
+        }
+      }
+    }
+    /// <summary>
+    /// Get/set CopySearchedSingle
+    /// </summary>
+    public bool CopySearchedSingle
+		{
+      get
+      {
+        return _copySearchedSingle;
+      }
+      set
+      {
+        _copySearchedSingle = value;
+        if (OnConfigChanged != null)
+        {
+          OnConfigChanged(this, new ConfigChangedEventArgs("CopySearchedSingle"));
         }
       }
     }
@@ -925,6 +948,10 @@ namespace WinAuth
 						case "autosize":
 							_autoSize = reader.ReadElementContentAsBoolean();
 							break;
+							
+						case "copysearchedsingle":
+							_copySearchedSingle = reader.ReadElementContentAsBoolean();
+							break;
 
 						case "left":
 							_position.X = reader.ReadElementContentAsInt();
@@ -1065,6 +1092,10 @@ namespace WinAuth
       //
       writer.WriteStartElement("alwaysontop");
       writer.WriteValue(this.AlwaysOnTop);
+      writer.WriteEndElement();
+      //
+      writer.WriteStartElement("copysearchedsingle");
+      writer.WriteValue(this.CopySearchedSingle);
       writer.WriteEndElement();
       //
       writer.WriteStartElement("usetrayicon");

@@ -111,7 +111,7 @@ namespace WinAuth.Resources {
         ///
         ///NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation.
         ///
-        ///Valve, the Valve logo, Half-Life, the Half-Life logo, the Lambda logo, Steam, the Steam lo [rest of string was truncated]&quot;;.
+        ///Valve, the Valve logo, Half-Life, the Half-Life logo, the Lambda logo, Steam, the Steam logo,  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _AboutForm_trademarkLabel_ {
             get {
@@ -252,7 +252,7 @@ namespace WinAuth.Resources {
         ///
         ///Some diagnostic information has been recorded and saved that might help track down issues in WinAuth.
         ///
-        ///It would help if you can submit this information so we can investigate the crash and try and fix the issue. This information does include information about your authenticators but is only used by the WinAuth developers solely for the purpose of investigating bugs and error reports. It does not include any personal or identifying information. Any information sent [rest of string was truncated]&quot;;.
+        ///It would help if you can submit this information so we can investigate the crash and try and fix the issue. This information does include information about your authenticators but is only used by the WinAuth developers solely for the purpose of investigating bugs and error reports. It does not include any personal or identifying information. Any information sent has b [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _ExceptionForm_errorLabel_ {
             get {
@@ -494,7 +494,7 @@ namespace WinAuth.Resources {
         ///&lt;li&gt;{COPY} to copy the code into the clipboard&lt;/li&gt;
         ///&lt;li&gt;{PASTE} to paste the clipboard contents into the active window&lt;/li&gt;
         ///&lt;li&gt;{EXIT} to exit WinAuth.&lt;/li&gt;&lt;/ul&gt;
-        ///&lt;p&gt;For example,  [rest of string was truncated]&quot;;.
+        ///&lt;p&gt;For example, to login [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _SetShortcutKeyForm_advancedTextbox_tooltip {
             get {
@@ -759,6 +759,15 @@ namespace WinAuth.Resources {
         internal static string CopyOnNewCode {
             get {
                 return ResourceManager.GetString("CopyOnNewCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Searched Single.
+        /// </summary>
+        internal static string CopySearchedSingle {
+            get {
+                return ResourceManager.GetString("CopySearchedSingle", resourceCulture);
             }
         }
         

@@ -459,6 +459,7 @@ namespace WinAuth
 						this.Config.StartWithWindows = config.StartWithWindows;
 						this.Config.UseTrayIcon = config.UseTrayIcon;
 						this.Config.AlwaysOnTop = config.AlwaysOnTop;
+						this.Config.CopySearchedSingle = config.CopySearchedSingle;
 
 						ChangePasswordForm form = new ChangePasswordForm();
 						form.PasswordType = Authenticator.PasswordTypes.Explicit;
@@ -699,6 +700,7 @@ namespace WinAuth
 			authenticatorList.Items.Clear();
 
 			int index = 0;
+			AuthenticatorListitem lastFound=null;
 			foreach (var auth in Config)
 			{
 				var ali = new AuthenticatorListitem(auth, index);
@@ -710,9 +712,20 @@ namespace WinAuth
 
 				if ( searchString=="" || ali.Authenticator.Name.ToLower().Contains(searchString.ToLower()))
 				{
+					lastFound = ali;
 					authenticatorList.Items.Add(ali);
 				}
 				index++;
+			}
+			// Copy found item OneTimeCode if it's single result
+			if (this.Config.CopySearchedSingle && authenticatorList.Items.Count==1)
+			{
+				Clipboard.SetText(lastFound.Authenticator.CurrentCode);
+				noticeLabel.Text = "Copied!";
+			}
+			else if (authenticatorList.Items.Count == 0)
+			{
+				noticeLabel.Text = "Not found";
 			}
 
 			authenticatorList.Visible = (authenticatorList.Items.Count != 0);
@@ -1889,21 +1902,17 @@ namespace WinAuth
 		private void searchTextbox_changed(object sender, EventArgs e)
 		{
 			string txt = this.searchTextbox.Text.Trim();
-			if (initialColor == null)
-				initialColor = searchTextbox.BackColor;
 			if (txt!="")
 			{
 				searchString = txt;
-				searchTextbox.BackColor = Color.LightCoral;
 			}
 			else
 			{
 				searchString = "";
-				searchTextbox.BackColor = initialColor;
 			}
+			noticeLabel.Text = "";
 			loadAuthenticatorList();
 		}
-		Color initialColor;
 		string searchString="";
 
 		/// <summary>
@@ -2023,6 +2032,11 @@ namespace WinAuth
 			menuitem = new ToolStripMenuItem(strings.MenuAutoSize);
 			menuitem.Name = "autoSizeOptionsMenuItem";
 			menuitem.Click += autoSizeOptionsMenuItem_Click;
+			menu.Items.Add(menuitem);
+
+			menuitem = new ToolStripMenuItem(strings.CopySearchedSingle);
+			menuitem.Name = "copySearchedSingleOptionsMenuItem";
+			menuitem.Click += copySearchedSingleOptionsMenuItem_Click;
 			menu.Items.Add(menuitem);
 
 			menu.Items.Add(new ToolStripSeparator());
@@ -2213,6 +2227,12 @@ namespace WinAuth
 			if (menuitem != null)
 			{
 				menuitem.Checked = this.Config.AutoSize;
+			}
+
+			menuitem = menu.Items.Cast<ToolStripItem>().Where(t => t.Name == "copySearchedSingleOptionsMenuItem").FirstOrDefault() as ToolStripMenuItem;
+			if (menuitem != null)
+			{
+				menuitem.Checked = this.Config.CopySearchedSingle;
 			}
 
 			menuitem = menu.Items.Cast<ToolStripItem>().Where(t => t.Name == "autoSizeOptionsMenuItem").FirstOrDefault() as ToolStripMenuItem;
@@ -2449,6 +2469,16 @@ namespace WinAuth
 		private void autoSizeOptionsMenuItem_Click(object sender, EventArgs e)
 		{
 			this.Config.AutoSize = !this.Config.AutoSize;
+		}
+
+		/// <summary>
+		/// Automatically copy the code when search result is only one item
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void copySearchedSingleOptionsMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Config.CopySearchedSingle = !this.Config.CopySearchedSingle;
 		}
 
 		/// <summary>

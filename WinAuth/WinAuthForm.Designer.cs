@@ -53,6 +53,7 @@
 			this.newVersionLink = new MetroFramework.Controls.MetroLink();
 			this.optionsButton = new MetroFramework.Controls.MetroButton();
 			this.searchTextbox = new MetroFramework.Controls.MetroTextBox();
+			this.noticeLabel = new MetroFramework.Controls.MetroLabel();
 			this.addAuthenticatorButton = new MetroFramework.Controls.MetroButton();
 			this.authenticatorList = new WinAuth.AuthenticatorListBox();
 			this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
@@ -192,6 +193,7 @@
             // 
 			this.commandPanel.Controls.Add(this.newVersionLink);
 			this.commandPanel.Controls.Add(this.optionsButton);
+			this.commandPanel.Controls.Add(this.noticeLabel);
 			this.commandPanel.Controls.Add(this.searchTextbox);
 			this.commandPanel.Controls.Add(this.addAuthenticatorButton);
 			this.commandPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -232,10 +234,10 @@
 			this.optionsButton.TabIndex = 0;
 			this.optionsButton.UseSelectable = true;
 			this.optionsButton.Click += new System.EventHandler(this.optionsButton_Click);
-            // 
-            // searchTextbox
-            // 
-			this.searchTextbox.Location = new System.Drawing.Point(160, 9);
+			// 
+			// searchTextbox
+			// 
+			this.searchTextbox.Location = new System.Drawing.Point(120, 9);
 			this.searchTextbox.MaxLength = 800;
 			this.searchTextbox.Name = "searchTextbox";
 			this.searchTextbox.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -243,7 +245,14 @@
 			this.searchTextbox.Size = new System.Drawing.Size(100, 20);
 			this.searchTextbox.TabIndex = 0;
 			this.searchTextbox.UseSelectable = true;
-			this.searchTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyUp); 
+			this.searchTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyUp);
+			// 
+			// noticeLabel
+			// 
+			this.noticeLabel.Location = new System.Drawing.Point(220, 11); 
+			this.noticeLabel.Name = "noticeLabel";
+			this.noticeLabel.FontSize =	MetroLabelSize.Small;
+			this.noticeLabel.Size = new System.Drawing.Size(60, 20);
 			// 
 			// addAuthenticatorButton
 			// 
@@ -358,6 +367,7 @@
 		private System.Windows.Forms.ContextMenuStrip addAuthenticatorMenu;
         private MetroFramework.Controls.MetroButton optionsButton;
         private MetroFramework.Controls.MetroTextBox searchTextbox;
+        private MetroFramework.Controls.MetroLabel noticeLabel;
         private System.Windows.Forms.ContextMenuStrip optionsMenu;
 		private System.Windows.Forms.NotifyIcon notifyIcon;
 		private MetroFramework.Controls.MetroLabel introLabel;
