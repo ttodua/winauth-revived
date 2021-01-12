@@ -93,7 +93,7 @@ namespace WinAuth
 			// set checkboxes and dropdown
 			autoDropdown.Items.Clear();
 			autoDropdown.Items.Add(new UpdateIntervalItem { Name = "Every Time", Interval = new TimeSpan(0, 0, 0, 0) });
-			autoDropdown.Items.Add(new UpdateIntervalItem { Name = "Every Day", Interval = new TimeSpan(1, 0, 0, 0) });
+			autoDropdown.Items.Add(new UpdateIntervalItem { Name = "Every Day", Interval = new TimeSpan(1, 0, 0) });
 			autoDropdown.Items.Add(new UpdateIntervalItem { Name = "Every 3 Days", Interval = new TimeSpan(3, 0, 0, 0) });
 			autoDropdown.Items.Add(new UpdateIntervalItem { Name = "Every Week", Interval = new TimeSpan(7, 0, 0, 0) });
 			autoDropdown.Items.Add(new UpdateIntervalItem { Name = "Every 2 Weeks", Interval = new TimeSpan(14, 0, 0, 0) });
@@ -104,14 +104,13 @@ namespace WinAuth
 				Updater = new WinAuthUpdater(this.Config);
 			}
 
-			if (Updater.IsAutoCheck == false)
+			autoCheckbox.Checked = Updater.IsAutoCheck; 
+			if ( autoCheckbox.Checked == false)
 			{
-				autoCheckbox.Checked = false;
 				autoDropdown.SelectedIndex = -1;
 			}
 			else
 			{
-				autoCheckbox.Checked = true;
 				TimeSpan? interval = Updater.UpdateInterval;
 				if (interval != null)
 				{

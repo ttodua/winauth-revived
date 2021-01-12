@@ -392,7 +392,7 @@ Would you like to import your previous authenticator now?</value>
     <value>Auto Size</value>
   </data>
   <data name="CopySearchedSingle" xml:space="preserve">
-    <value>Copy Searched Single</value>
+    <value>Auto-copy if searched single</value>
   </data>
   <data name="AutoExitAfterCopy" xml:space="preserve">
     <value>Auto-close WinAuth after code is copied</value>

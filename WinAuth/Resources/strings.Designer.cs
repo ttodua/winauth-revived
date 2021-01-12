@@ -772,7 +772,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy Searched Single.
+        ///   Looks up a localized string similar to Auto-copy if searched single.
         /// </summary>
         internal static string CopySearchedSingle {
             get {

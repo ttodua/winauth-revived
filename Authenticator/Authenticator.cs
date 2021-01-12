@@ -1044,8 +1044,10 @@ namespace WinAuth
     public static HashAlgorithm SafeHasher(string name)
     {
       try
-      {
-        if (name == "SHA512")
+      
+            {
+        
+                if (name == "SHA512")
         {
           return SHA512.Create();
         }

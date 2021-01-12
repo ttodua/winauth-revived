@@ -421,7 +421,7 @@ namespace WinAuth
 			{
 				// write into regisry
 				
-				Config.WriteSetting(WINAUTHREGKEY_CHECKFREQUENCY, string.Format("{0}:{1:00}:{2:00}", interval.Value.TotalHours, interval.Value.Minutes, interval.Value.Seconds)); // toString("c") is Net4
+				Config.WriteSetting(WINAUTHREGKEY_CHECKFREQUENCY, string.Format("{0:00}.{1:00}:{2:00}:{3:00}", (int)interval.Value.TotalDays, interval.Value.Hours, interval.Value.Minutes, interval.Value.Seconds) ); // toString("c") is Net4
 
 				// if last update not set, set to now
 				if (Config.ReadSetting(WINAUTHREGKEY_LASTCHECK) == null)
@@ -434,7 +434,6 @@ namespace WinAuth
 				// remove from registry
 				Config.WriteSetting(WINAUTHREGKEY_CHECKFREQUENCY, null);
 			}
-
 			// update local values
 			_autocheckInterval = interval;
 		}

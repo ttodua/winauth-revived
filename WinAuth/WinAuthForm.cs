@@ -576,7 +576,7 @@ namespace WinAuth
 				// the very first time, we set it to update each time
 				if (Updater.LastCheck == DateTime.MinValue)
 				{
-					Updater.SetUpdateInterval(new TimeSpan(0, 0, 0));
+					Updater.SetUpdateInterval(new TimeSpan(1, 0, 0, 0));
 				}
 				if (Updater.IsAutoCheck == true)
 				{
@@ -620,7 +620,7 @@ namespace WinAuth
 			HookHotkeys();
 
 			// hook Steam notifications
-			HookSteam();
+			//HookSteam();
 
 			// save the position of the list within the form else starting as minimized breaks the size
 			_listoffset = new Rectangle(authenticatorList.Left, authenticatorList.Top, (this.Width - authenticatorList.Width), (this.Height - authenticatorList.Height));
