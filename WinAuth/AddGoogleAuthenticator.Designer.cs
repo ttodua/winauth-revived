@@ -73,8 +73,7 @@ namespace WinAuth
 			this.step1Label.Name = "step1Label";
 			this.step1Label.Size = new System.Drawing.Size(425, 48);
 			this.step1Label.TabIndex = 1;
-			this.step1Label.Text = "1. Enter the Secret Code for your authenticator. Spaces don\'t matter. If you have a Q" +
-    "R code, you can paste the URL of the image instead.\r\n";
+			this.step1Label.Text = "1. Enter the Secret Code or KeyUri string ( spaces don\'t matter ). You can paste the QR image URL instead or drag image itself.\r\n";
 			// 
 			// okButton
 			// 

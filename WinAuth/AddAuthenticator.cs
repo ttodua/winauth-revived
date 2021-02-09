@@ -596,9 +596,18 @@ namespace WinAuth
             e.Effect = DragDropEffects.Copy;
         }
 
+        private Color initialColor;
+
         private void dragPanel_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
+            initialColor = (sender as Panel).BackColor;
+            (sender as Panel).BackColor = Color.LightGreen;
+        }
+
+        private void dragImagePanel_DragLeave(object sender, EventArgs e)
+        {
+            (sender as Panel).BackColor = initialColor;
         }
 
         private void dragPanel_DragDrop(object sender, DragEventArgs e)
@@ -609,6 +618,7 @@ namespace WinAuth
             byte[] imageArray = System.IO.File.ReadAllBytes(filePath);
             string base64ImageRepresentation = Convert.ToBase64String(imageArray);
             secretCodeField.Text = @"data:image/"+ ext + ";base64," + base64ImageRepresentation;
+            this.verifyButton_Click(null, null);
         }
 
         #endregion

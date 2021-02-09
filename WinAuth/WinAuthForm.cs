@@ -572,15 +572,15 @@ namespace WinAuth
 			if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed == false)
 			{
 				Updater = new WinAuthUpdater(this.Config);
-
 				// the very first time, we set it to update each time
 				if (Updater.LastCheck == DateTime.MinValue)
 				{
-					Updater.SetUpdateInterval(new TimeSpan(1, 0, 0, 0));
+					Updater.SetUpdateInterval(new TimeSpan(3, 0, 0, 0));
 				}
 				if (Updater.IsAutoCheck == true)
 				{
 					Version latest = Updater.LastKnownLatestVersion;
+
 					if (latest != null && latest > Updater.CurrentVersion)
 					{
 						newVersionLink.Text = "New version " + latest + " available";

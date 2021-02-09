@@ -49,6 +49,7 @@
 			this.passwordLabel = new MetroFramework.Controls.MetroLabel();
 			this.passwordField = new MetroFramework.Controls.MetroTextBox();
 			this.introLabel = new MetroFramework.Controls.MetroLabel();
+			this.searchLabel = new MetroFramework.Controls.MetroLabel();
 			this.commandPanel = new MetroFramework.Controls.MetroPanel();
 			this.newVersionLink = new MetroFramework.Controls.MetroLink();
 			this.optionsButton = new MetroFramework.Controls.MetroButton();
@@ -179,21 +180,22 @@
 			this.passwordField.UseSelectable = true;
 			this.passwordField.UseSystemPasswordChar = true;
 			this.passwordField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordField_KeyPress);
-            // 
-            // introLabel
-            // 
+			// 
+			// introLabel
+			// 
 			this.introLabel.Location = new System.Drawing.Point(23, 76);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(377, 35);
 			this.introLabel.TabIndex = 3;
 			this.introLabel.Text = "Click the \"Add\" button to create or import your authenticator";
 			this.introLabel.Visible = false;
-            // 
-            // commandPanel
-            // 
+			// 
+			// commandPanel
+			// 
 			this.commandPanel.Controls.Add(this.newVersionLink);
 			this.commandPanel.Controls.Add(this.optionsButton);
 			this.commandPanel.Controls.Add(this.noticeLabel);
+			this.commandPanel.Controls.Add(this.searchLabel);
 			this.commandPanel.Controls.Add(this.searchTextbox);
 			this.commandPanel.Controls.Add(this.addAuthenticatorButton);
 			this.commandPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -234,6 +236,13 @@
 			this.optionsButton.TabIndex = 0;
 			this.optionsButton.UseSelectable = true;
 			this.optionsButton.Click += new System.EventHandler(this.optionsButton_Click);
+			// 
+			// searchLabel
+			// 
+			this.searchLabel.Location = new System.Drawing.Point(96, 10);
+			this.searchLabel.Name = "searchLabel";
+			this.searchLabel.Size = new System.Drawing.Size(24, 20);
+			this.searchLabel.Text = "🔎";
 			// 
 			// searchTextbox
 			// 
@@ -371,6 +380,7 @@
         private System.Windows.Forms.ContextMenuStrip optionsMenu;
 		private System.Windows.Forms.NotifyIcon notifyIcon;
 		private MetroFramework.Controls.MetroLabel introLabel;
+		private MetroFramework.Controls.MetroLabel searchLabel;
 		private MetroFramework.Controls.MetroPanel passwordPanel;
 		private MetroFramework.Controls.MetroTextBox passwordField;
 		private MetroFramework.Controls.MetroButton passwordButton;
