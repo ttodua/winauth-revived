@@ -334,6 +334,7 @@ namespace WinAuth
       return false;
     }
 
+
     /// <summary>
     /// Verify and create the authenticator if needed
     /// </summary>
@@ -344,7 +345,7 @@ namespace WinAuth
       {
         return false;
       }
-
+      
       this.Authenticator.Name = nameField.Text;
 
       int digits = (this.Authenticator.AuthenticatorData != null ? this.Authenticator.AuthenticatorData.CodeDigits : GoogleAuthenticator.DEFAULT_CODE_DIGITS);
@@ -365,7 +366,7 @@ namespace WinAuth
       }
 
       long counter = 0;
-
+            
       // if this is a URL, pull it down
       Uri uri;
       Match match;
@@ -401,7 +402,8 @@ namespace WinAuth
       }
       else if ((match = Regex.Match(privatekey, @"data:image/([^;]+);base64,(.*)", RegexOptions.IgnoreCase)).Success == true)
       {
-        byte[] imagedata = Convert.FromBase64String(match.Groups[2].Value);
+        string imageB64Content = match.Groups[2].Value;
+        byte[] imagedata = Convert.FromBase64String(imageB64Content);
         using (MemoryStream ms = new MemoryStream(imagedata))
         {
           using (Bitmap bitmap = (Bitmap)Bitmap.FromStream(ms))
@@ -428,7 +430,7 @@ namespace WinAuth
           }
         }
       }
-
+      
       string issuer = null;
       string serial = null;
 
@@ -446,7 +448,7 @@ namespace WinAuth
         }
 
         NameValueCollection qs = WinAuthHelper.ParseQueryString(match.Groups[3].Value);
-        privatekey = qs["secret"] ?? privatekey;
+        privatekey = qs["secret"] ?? privatekey; 
         int querydigits;
         if (int.TryParse(qs["digits"], out querydigits) && querydigits != 0)
         {
@@ -479,7 +481,7 @@ namespace WinAuth
           }
         }
       }
-
+      
       // just get the hex chars
       privatekey = Regex.Replace(privatekey, @"[^0-9a-z]", "", RegexOptions.IgnoreCase);
       if (privatekey.Length == 0)
@@ -487,7 +489,7 @@ namespace WinAuth
         WinAuthForm.ErrorDialog(this.Owner, "The secret code is not valid");
         return false;
       }
-
+      
       try
       {
         Authenticator auth;
@@ -549,7 +551,6 @@ namespace WinAuth
           WinAuthForm.ErrorDialog(this.Owner, "Only TOTP or HOTP authenticators are supported");
           return false;
         }
-
         auth.HMACType = hmac;
         auth.CodeDigits = digits;
         auth.Period = period;
