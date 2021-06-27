@@ -718,7 +718,7 @@ namespace WinAuth
 				}
 				index++;
 			}
-			// Copy found item OneTimeCode if it's single result
+			// Copy found item's code  if it's single result
 			if (this.Config.CopySearchedSingle && authenticatorList.Items.Count==1)
 			{
 				Clipboard.SetText(lastFound.Authenticator.CurrentCode);
@@ -731,9 +731,16 @@ namespace WinAuth
 			else if (authenticatorList.Items.Count == 0)
 			{
 				noticeLabel.Text = "Not found";
-			}
-
+			} 
 			authenticatorList.Visible = (authenticatorList.Items.Count != 0);
+
+			//sort by alphabet
+			var list = authenticatorList.Items.Cast<AuthenticatorListitem>().OrderBy(item => item.Authenticator.Name).ToList();
+			authenticatorList.Items.Clear();
+			foreach (AuthenticatorListitem listItem in list)
+			{
+				authenticatorList.Items.Add(listItem);
+			}
 		}
 
 		/// <summary>
