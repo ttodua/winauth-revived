@@ -343,6 +343,9 @@ All other trademarks are the property of their respective owners.</value>
 	<data name="_ChangePasswordForm_passwordCheckbox_" xml:space="preserve">
     <value>保护我自己的密码</value>
   </data>
+	<data name="_ChangePasswordForm_autologinCheckbox_" xml:space="preserve">
+    <value>Auto-try to login after every keypress (without need to click OK)</value>
+  </data>
 	<data name="_ChangePasswordForm_passwordFieldLabel_" xml:space="preserve">
     <value>密码</value>
   </data>

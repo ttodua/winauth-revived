@@ -69,10 +69,21 @@ namespace WinAuth
     /// </summary>
     private string _filename;
 
+
+		/// <summary>
+		/// AutoLogin check fle
+		/// </summary>
+		public static string AutologinOnKeyPress_file = Path.GetTempPath() + "/_WA_autologin";
+		public static bool checkIfAutologinOnKeyPress()
+		{
+			return File.Exists(WinAuthConfig.AutologinOnKeyPress_file);
+		}
+
+
 		/// <summary>
 		/// Current version of this Config
 		/// </summary>
-    public decimal Version { get; private set; }
+		public decimal Version { get; private set; }
 
 		/// <summary>
 		/// Save password for re-saving and encrypting file
@@ -131,9 +142,10 @@ namespace WinAuth
     private bool _copySearchedSingle;
 
     /// <summary>
-    /// Flag to copy the searched single
+    /// Try to auto login on every keypress (if password is set already)
     /// </summary>
     private bool _autoExitAfterCopy;
+		 
 
     /// <summary>
     /// Flag to use tray icon
@@ -280,7 +292,7 @@ namespace WinAuth
         }
       }
     }
-
+		 
     /// <summary>
     /// Get/set use tray icon top flag
     /// </summary>
@@ -978,7 +990,7 @@ namespace WinAuth
 
 						case "autoexitaftercopy":
 							_autoExitAfterCopy = reader.ReadElementContentAsBoolean();
-							break;
+							break; 
 
 						case "left":
 							_position.X = reader.ReadElementContentAsInt();
@@ -1127,7 +1139,7 @@ namespace WinAuth
       //
       writer.WriteStartElement("autoexitaftercopy");
       writer.WriteValue(this.AutoExitAfterCopy);
-      writer.WriteEndElement();
+      writer.WriteEndElement(); 
       //
       writer.WriteStartElement("usetrayicon");
       writer.WriteValue(this.UseTrayIcon);

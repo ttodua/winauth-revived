@@ -129,6 +129,15 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto-try to login after every keypress (without need to click OK).
+        /// </summary>
+        internal static string _ChangePasswordForm_autologinCheckbox_ {
+            get {
+                return ResourceManager.GetString("_ChangePasswordForm_autologinCheckbox_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string _ChangePasswordForm_cancelButton_ {
@@ -180,8 +189,8 @@ namespace WinAuth.Resources {
             get {
                 return ResourceManager.GetString("_ChangePasswordForm_passwordCheckbox_", resourceCulture);
             }
-        }
-        
+        } 
+
         /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>

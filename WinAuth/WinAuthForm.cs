@@ -230,7 +230,7 @@ namespace WinAuth
 			loadConfig(password);
 		}
 
-#region Private Methods
+		#region Private Methods
 
 		/// <summary>
 		/// Load the current config into WinAuth
@@ -239,10 +239,23 @@ namespace WinAuth
 		/// <param name="configFile">optional explicit config file</param>
 		private void loadConfig(string password)
 		{
+			loadConfig(password, false);
+		}
+
+		/// <summary>
+		/// Load the current config into WinAuth
+		/// </summary>
+		/// <param name="password">optional password to decrypt config</param>
+		/// <param name="configFile">optional explicit config file</param>
+		private void loadConfig(string password, bool silentLoad)
+		{
 			string configFile = _startupConfigFile;
 
-			loadingPanel.Visible = true;
-			passwordPanel.Visible = false;
+			if (!silentLoad)
+			{
+				loadingPanel.Visible = true;
+				passwordPanel.Visible = false;
+			}
 #if NETFX_4
 			Task.Factory.StartNew<Tuple<WinAuthConfig, Exception>>(() =>
 			{
@@ -303,6 +316,16 @@ namespace WinAuth
 					System.Diagnostics.Process.GetCurrentProcess().Kill();
 					return;
 				}
+
+
+				if (silentLoad)
+				{
+					passwordButton_Click(null, null); //tried, but cant make it work otherwise, I don't have more time...
+					//loadingPanel.Visible = false;
+					//passwordPanel.Visible = false;
+					//this.passwordField.Text = string.Empty;
+				}
+
 
 				// check for a v2 config file if this is a new config
 				if (config.Count == 0 && string.IsNullOrEmpty(config.Filename) == true)
@@ -1898,16 +1921,20 @@ namespace WinAuth
 		/// <param name="e"></param>
 		private void passwordButton_Click(object sender, EventArgs e)
 		{
+			if (makeLoadWithPassword(false))
+				this.passwordField.Text = string.Empty;
+		}
+		private bool makeLoadWithPassword(bool silent)
+        {
 			if (this.passwordField.Text.Trim().Length == 0)
 			{
 				this.passwordErrorLabel.Text = strings.EnterPassword;
 				this.passwordErrorLabel.Tag = DateTime.Now.AddSeconds(3);
 				this.passwordTimer.Enabled = true;
-				return;
+				return false;
 			}
-
-			loadConfig(this.passwordField.Text);
-			this.passwordField.Text = string.Empty;
+			loadConfig(this.passwordField.Text, silent);
+			return true;
 		}
 
 		/// <summary>
@@ -1959,6 +1986,16 @@ namespace WinAuth
 				passwordButton_Click(sender, null);
 			}
 		}
+
+		//
+		private void PasswordField_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+		{
+			if (WinAuthConfig.checkIfAutologinOnKeyPress())
+			{
+				makeLoadWithPassword(true);
+			}
+		}
+
 		/// <summary>
 		/// Catch pressing Enter in the searchbox
 		/// </summary>
@@ -2352,7 +2389,7 @@ namespace WinAuth
 
 			ChangePasswordForm form = new ChangePasswordForm();
 			form.PasswordType = this.Config.PasswordType;
-			form.HasPassword = ((this.Config.PasswordType & Authenticator.PasswordTypes.Explicit) != 0);
+			form.HasPassword = ((this.Config.PasswordType & Authenticator.PasswordTypes.Explicit) != 0); 
 			if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
 			{
 				bool retry;
@@ -2381,7 +2418,7 @@ namespace WinAuth
 						}
 						this.Config.PasswordType = retrypasswordtype;
 					}
-				} while (retry);
+				} while (retry); 
 			}
 		}
 

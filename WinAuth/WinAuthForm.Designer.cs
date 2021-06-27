@@ -180,6 +180,7 @@
 			this.passwordField.UseSelectable = true;
 			this.passwordField.UseSystemPasswordChar = true;
 			this.passwordField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordField_KeyPress);
+            this.passwordField.KeyUp += this.PasswordField_KeyUp;
 			// 
 			// introLabel
 			// 
@@ -363,9 +364,10 @@
 
     }
 
-		#endregion
 
-		private MetroFramework.Components.MetroStyleManager metroStyleManager;
+        #endregion
+
+        private MetroFramework.Components.MetroStyleManager metroStyleManager;
 		private MetroFramework.Components.MetroStyleExtender metroStyleExtender;
 		private AuthenticatorListBox authenticatorList;
 		private System.Windows.Forms.Timer mainTimer;

@@ -58,6 +58,9 @@ namespace WinAuth
 		/// </summary>
 		public Authenticator.PasswordTypes PasswordType { get; set; }
 
+
+ 
+
 		/// <summary>
 		/// Current and new password
 		/// </summary>
@@ -99,6 +102,9 @@ namespace WinAuth
 					verifyField.Text = EXISTING_PASSWORD;
 				}
 			}
+
+			this.autologinCheckbox.Checked = WinAuthConfig.checkIfAutologinOnKeyPress();
+			showHideAutologin();
 		}
 
 		/// <summary>
@@ -138,11 +144,32 @@ namespace WinAuth
 		{
 			passwordField.Enabled = (passwordCheckbox.Checked);
 			verifyField.Enabled = (passwordCheckbox.Checked);
+			showHideAutologin();
 			if (passwordCheckbox.Checked == true)
 			{
 				passwordField.Focus();
 			}
 		}
+
+		/// <summary>
+		/// Password encrpytion is ticked
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void autologinCheckbox_CheckedChanged(object sender, EventArgs e)
+		{
+			 
+		}
+
+
+		/// <summary>
+		/// Check whether password is checked, and show/hide the checkbox according to that
+		/// </summary>
+		private void showHideAutologin()
+        {
+			autologinCheckbox.Visible = passwordCheckbox.Checked;
+		}
+
 
 		/// <summary>
 		/// OK button is clicked
@@ -183,6 +210,15 @@ namespace WinAuth
 				{
 					Password = this.passwordField.Text.Trim();
 				}
+			}
+
+			if (!this.autologinCheckbox.Checked)
+            {
+				File.Delete(WinAuthConfig.AutologinOnKeyPress_file);
+            }
+            else
+            {
+				File.WriteAllText(WinAuthConfig.AutologinOnKeyPress_file,"");
 			}
 		}
 
