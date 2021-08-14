@@ -1,5 +1,5 @@
-❗  ❗   ❗       
-Please Read the original repository's README, as I haven't copy-pasted that text here. I have only extended and added some features.
+❗   ❗   ❗       
+Please Read the <a href="https://github.com/winauth/winauth">original repository's README</a>, as I haven't copy-pasted that text here. I have only extended and added some features.
 This is primarily an update over the <a href="https://github.com/Florastamine/winauth">https://github.com/Florastamine/winauth</a> fork (at 2020-09-01).
 I've added only several things:
 - Search-box to quickly filter the desired sites from list
