@@ -129,7 +129,7 @@
 Your code may not be correct</value>
   </data>
   <data name="AutoRefresh" xml:space="preserve">
-    <value>Auto Refresh</value>
+    <value>Auto refresh</value>
   </data>
   <data name="CannotFindConfigurationFile" xml:space="preserve">
     <value>Unable to find your configuration file</value>
@@ -138,7 +138,7 @@ Your code may not be correct</value>
     <value>Unable to load authenticator from {0}</value>
   </data>
   <data name="ChangeOrRemovePassword" xml:space="preserve">
-    <value>Change or Remove Password</value>
+    <value>Change or remove password</value>
   </data>
   <data name="ClipboardInUse" xml:space="preserve">
     <value>Unable to copy to the clipboard. Another application is probably using it.
@@ -146,10 +146,10 @@ Your code may not be correct</value>
 Try again?</value>
   </data>
   <data name="CopyCode" xml:space="preserve">
-    <value>Copy Code</value>
+    <value>Copy code</value>
   </data>
   <data name="CopyOnNewCode" xml:space="preserve">
-    <value>Copy on New Code</value>
+    <value>Copy on new code</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
@@ -180,7 +180,7 @@ Do you want to try again?</value>
     <value>File must be a zip file</value>
   </data>
   <data name="HideDetails" xml:space="preserve">
-    <value>Hide Details</value>
+    <value>Hide details</value>
   </data>
   <data name="HotKeyNotAvailable" xml:space="preserve">
     <value>The shortuct key combination is already in use or not available</value>
@@ -201,7 +201,7 @@ Do you want to try again?</value>
     <value>Invalid password</value>
   </data>
   <data name="LoadIconImage" xml:space="preserve">
-    <value>Load Icon Image</value>
+    <value>Load icon image</value>
   </data>
   <data name="LoadPreviousAuthenticator" xml:space="preserve">
     <value>You have an authenticator from a previous version of WinAuth ({0}).
@@ -214,10 +214,10 @@ Would you like to import your previous authenticator now?</value>
     <value>About</value>
   </data>
   <data name="MenuAlwaysOnTop" xml:space="preserve">
-    <value>Always on Top</value>
+    <value>Always on top</value>
   </data>
   <data name="MenuAutoSize" xml:space="preserve">
-    <value>Auto Size</value>
+    <value>Auto size</value>
   </data>
   <data name="CopySearchedSingle" xml:space="preserve">
     <value>Auto-copy if searched single</value>
@@ -226,7 +226,7 @@ Would you like to import your previous authenticator now?</value>
     <value>Auto-close WinAuth after code is copied</value>
   </data>
   <data name="MenuChangeProtection" xml:space="preserve">
-    <value>Change Protection</value>
+    <value>Change protection</value>
   </data>
   <data name="MenuExit" xml:space="preserve">
     <value>Exit</value>
@@ -247,13 +247,13 @@ Would you like to import your previous authenticator now?</value>
     <value>Portable</value>
   </data>
   <data name="MenuStartWithWindows" xml:space="preserve">
-    <value>Start With Windows</value>
+    <value>Start with Windows</value>
   </data>
   <data name="MenuUpdates" xml:space="preserve">
     <value>Check for updates</value>
   </data>
   <data name="MenuUseSystemTrayIcon" xml:space="preserve">
-    <value>Use System Tray Icon</value>
+    <value>Use system tray icon</value>
   </data>
   <data name="MissingFile" xml:space="preserve">
     <value>Select or enter a file</value>
@@ -276,25 +276,25 @@ Do you want to overwrite it?</value>
     <value>Rename</value>
   </data>
   <data name="SetPassword" xml:space="preserve">
-    <value>Set Password</value>
+    <value>Set password</value>
   </data>
   <data name="ShortcutKey" xml:space="preserve">
-    <value>Shortcut Key</value>
+    <value>Shortcut key</value>
   </data>
   <data name="ShowCode" xml:space="preserve">
-    <value>Show Code</value>
+    <value>Show code</value>
   </data>
   <data name="ShowSecretKey" xml:space="preserve">
-    <value>Show Secret Key</value>
+    <value>Show secret key</value>
   </data>
   <data name="ShowSerialAndRestoreCode" xml:space="preserve">
-    <value>Show Serial &amp;&amp; Restore Code</value>
+    <value>Show serial &amp;&amp; restore code</value>
   </data>
   <data name="ShowSerialKeyAndDeviceId" xml:space="preserve">
-    <value>Show Serial Key and Device ID</value>
+    <value>Show serial key and device ID</value>
   </data>
   <data name="SyncTime" xml:space="preserve">
-    <value>Sync Time</value>
+    <value>Sync time</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
     <value>An unknown error occured</value>
@@ -361,13 +361,13 @@ All other trademarks are the property of their respective owners.</value>
     <value>Verify</value>
   </data>
   <data name="_ExceptionForm_" xml:space="preserve">
-    <value>WinAuth Error</value>
+    <value>WinAuth error</value>
   </data>
   <data name="_ExceptionForm_continueButton_" xml:space="preserve">
     <value>Continue</value>
   </data>
   <data name="_ExceptionForm_detailsButton_" xml:space="preserve">
-    <value>Show Details</value>
+    <value>Show details</value>
   </data>
   <data name="_ExceptionForm_errorLabel_" xml:space="preserve">
     <value>An error has occured in WinAuth.
@@ -384,10 +384,10 @@ If you are happy to send this information please either click Send Error Report 
     <value>Quit</value>
   </data>
   <data name="_ExceptionForm_reportButton_" xml:space="preserve">
-    <value>Send Error Report</value>
+    <value>Send error report</value>
   </data>
   <data name="_GetPasswordForm_" xml:space="preserve">
-    <value>Enter Password</value>
+    <value>Enter password</value>
   </data>
   <data name="_GetPasswordForm_cancelButton_" xml:space="preserve">
     <value>Cancel</value>
@@ -426,7 +426,7 @@ If you are happy to send this information please either click Send Error Report 
     <value>Enter or select your PGPkey</value>
   </data>
   <data name="_SetPasswordForm_" xml:space="preserve">
-    <value>Set Password</value>
+    <value>Set password</value>
   </data>
   <data name="_SetPasswordForm_cancelButton_" xml:space="preserve">
     <value>Cancel</value>
@@ -447,7 +447,7 @@ If you are happy to send this information please either click Send Error Report 
     <value>Verify</value>
   </data>
   <data name="_SetShortcutKeyForm_" xml:space="preserve">
-    <value>Shortcut Key</value>
+    <value>Shortcut key</value>
   </data>
   <data name="_SetShortcutKeyForm_advancedLink_" xml:space="preserve">
     <value>more info</value>
@@ -513,10 +513,10 @@ If you are happy to send this information please either click Send Error Report 
     <value>Password</value>
   </data>
   <data name="MenuRememberPosition" xml:space="preserve">
-    <value>Remember Position</value>
+    <value>Remember position</value>
   </data>
   <data name="ShowRevocation" xml:space="preserve">
-    <value>Show SteamGuard and Recovery Code</value>
+    <value>Show SteamGuard and recovery code</value>
   </data>
   <data name="ConfigIsNewer" xml:space="preserve">
     <value>Your authenticators were saved with newer a version of WinAuth and so cannot be loaded. Please use WinAuth {0} or later.</value>
@@ -540,12 +540,12 @@ Now is a good time to make a backup. Click the Options icon and choose Export.</
     <value>Action</value>
   </data>
   <data name="DefaultActionCopyToClipboard" xml:space="preserve">
-    <value>Copy To Clipboard</value>
+    <value>Copy to clipboard</value>
   </data>
   <data name="DefaultActionNotification" xml:space="preserve">
-    <value>Show Notification</value>
+    <value>Show notification</value>
   </data>
   <data name="DefaultActionHotkey" xml:space="preserve">
-    <value>Simulate Hotkey</value>
+    <value>Simulate hotkey</value>
   </data>
 </root>
