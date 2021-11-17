@@ -250,7 +250,7 @@ Would you like to import your previous authenticator now?</value>
     <value>Start With Windows</value>
   </data>
   <data name="MenuUpdates" xml:space="preserve">
-    <value>Check for updates...</value>
+    <value>Check for updates</value>
   </data>
   <data name="MenuUseSystemTrayIcon" xml:space="preserve">
     <value>Use System Tray Icon</value>
