@@ -55,7 +55,7 @@ namespace WinAuth
 		/// </summary>
 		private const string WINAUTHREGKEY_BETAWARNING = @"Software\WinAuth3\BetaWarning";
 #endif
-		
+
 		public WinAuthForm()
     {
       InitializeComponent();
@@ -350,12 +350,12 @@ namespace WinAuth
 
     /// <summary>
     /// Import authenticators from a file
-    /// 
+    ///
     /// *.xml = WinAuth v2
     /// *.txt = plain text with KeyUriFormat per line (https://code.google.com/p/google-authenticator/wiki/KeyUriFormat)
     /// *.zip = encrypted zip, containing import file
     /// *.pgp = PGP encrypted, containing import file
-    /// 
+    ///
     /// </summary>
     /// <param name="authenticatorFile">name import file</param>
     private void importAuthenticator(string authenticatorFile)
@@ -734,7 +734,7 @@ namespace WinAuth
 					ali.DisplayUntil = DateTime.Now.AddSeconds(10);
 				}
 
-				if ( searchString=="" || ali.Authenticator.Name.ToLower().Contains(searchString.ToLower()))
+				if (searchString == "" || ali.Authenticator.Name.ToLower().Contains(searchString.ToLower()))
 				{
 					lastFound = ali;
 					authenticatorList.Items.Add(ali);
@@ -742,7 +742,7 @@ namespace WinAuth
 				index++;
 			}
 			// Copy found item's code  if it's single result
-			if (this.Config.CopySearchedSingle && authenticatorList.Items.Count==1)
+			if (this.Config.CopySearchedSingle && authenticatorList.Items.Count == 1)
 			{
 				Clipboard.SetText(lastFound.Authenticator.CurrentCode);
 				noticeLabel.Text = "Copied!";
@@ -754,7 +754,7 @@ namespace WinAuth
 			else if (authenticatorList.Items.Count == 0)
 			{
 				noticeLabel.Text = "Not found";
-			} 
+			}
 			authenticatorList.Visible = (authenticatorList.Items.Count != 0);
 
 			//sort by alphabet
@@ -1262,7 +1262,25 @@ namespace WinAuth
 					keysend.SendKeys(this, command, code);
 				}
 			}
-	  }
+		}
+
+		/// <summary>
+		/// Handles escape key. When escape is pressed, it clears the search textbox and resets the list.
+		/// </summary>
+		/// <param name="keyData"></param>
+		/// <returns></returns>
+		protected override bool ProcessDialogKey(Keys keyData)
+		{
+			if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+			{
+				this.searchTextbox.Focus(); // Textbox needs to be in focus in order for the change event to fire after clear.
+				this.searchTextbox.Clear();
+
+				return true;
+			}
+
+			return base.ProcessDialogKey(keyData);
+		}
 
 		/// <summary>
 		/// Run an action on the authenticator
@@ -1515,7 +1533,7 @@ namespace WinAuth
 		/// <param name="e"></param>
 		private void WinAuthForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			// keep in the tray when closing Form 
+			// keep in the tray when closing Form
 			if (Config != null && Config.UseTrayIcon == true && this.Visible == true && m_explictClose == false)
 			{
 				e.Cancel = true;
@@ -2002,8 +2020,8 @@ namespace WinAuth
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void searchTextbox_KeyUp(object sender, KeyEventArgs e)
-		{ 
-			searchTextbox_changed(sender, null); 
+		{
+			searchTextbox_changed(sender, null);
 		}
 
 		/// <summary>
@@ -2292,7 +2310,7 @@ namespace WinAuth
 			{
 				menuitem.Checked = this.Config.CopySearchedSingle;
 			}
-			
+
 
 			menuitem = menu.Items.Cast<ToolStripItem>().Where(t => t.Name == "autoExitAfterCopyOptionsMenuItem").FirstOrDefault() as ToolStripMenuItem;
 			if (menuitem != null)
@@ -2389,7 +2407,7 @@ namespace WinAuth
 
 			ChangePasswordForm form = new ChangePasswordForm();
 			form.PasswordType = this.Config.PasswordType;
-			form.HasPassword = ((this.Config.PasswordType & Authenticator.PasswordTypes.Explicit) != 0); 
+			form.HasPassword = ((this.Config.PasswordType & Authenticator.PasswordTypes.Explicit) != 0);
 			if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
 			{
 				bool retry;
@@ -2418,7 +2436,7 @@ namespace WinAuth
 						}
 						this.Config.PasswordType = retrypasswordtype;
 					}
-				} while (retry); 
+				} while (retry);
 			}
 		}
 
@@ -2495,7 +2513,7 @@ namespace WinAuth
 		{
 			this.Config.UseTrayIcon = !this.Config.UseTrayIcon;
 		}
-		
+
 		/// <summary>
 		/// Click the default action options menu item
 		/// </summary>
