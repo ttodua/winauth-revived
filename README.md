@@ -1,6 +1,4 @@
-❗   ❗   ❗       
-(Read the <a href="https://github.com/winauth/winauth">original WinAuth's README</a>)
-
+❗   ❗   ❗  _(To find out about WinAuth, read the <a href="https://github.com/winauth/winauth">original repository's README</a>)_ 
 Unfortunately, original WinAuth's development has been archived, without leaving a way to contact author & suggest updates. I've forked it (on top of <a href="https://github.com/Florastamine/winauth">Florastamine 2020-09-01</a> update) and added some essential features:
 
 - Winauth is now standalone `.exe` file is being (produced by `Costura.Fody`)._[to make it portable, copy WinAuth.xml from `%appdata%\WinAuth` aside to `WinAuth.exe`]_
@@ -11,3 +9,6 @@ Unfortunately, original WinAuth's development has been archived, without leaving
 - Fixed "Auto-Update" interval option being erased on next re-open.
 
 (One issue still persists which we couldn't fix - when having tons of sites, WinAuth takes a while to open on startup).
+
+
+* To `Build` , install NuGet packages at first, and then Build (if any issues, clean solution and restart VS).
