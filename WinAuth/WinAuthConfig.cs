@@ -958,12 +958,12 @@ namespace WinAuth
 							break;
 						
 						case "alwaysontop":
-              _alwaysOnTop = reader.ReadElementContentAsBoolean();
-              break;
+						  _alwaysOnTop = reader.ReadElementContentAsBoolean();
+						  break;
 
-            case "usetrayicon":
-              _useTrayIcon = reader.ReadElementContentAsBoolean();
-              break;
+						case "usetrayicon":
+						  _useTrayIcon = reader.ReadElementContentAsBoolean();
+						  break;
 
 						case "notifyaction":
 							string s = reader.ReadElementContentAsString();
@@ -977,8 +977,8 @@ namespace WinAuth
 							break;
 
 						case "startwithwindows":
-              _startWithWindows = reader.ReadElementContentAsBoolean();
-              break;
+						  _startWithWindows = reader.ReadElementContentAsBoolean();
+						  break;
 
 						case "autosize":
 							_autoSize = reader.ReadElementContentAsBoolean();

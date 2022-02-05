@@ -720,6 +720,7 @@ namespace WinAuth
 		/// <param name="added">authenticator we just added</param>
 		private void loadAuthenticatorList(WinAuthAuthenticator added = null)
 		{
+			int initialAmount = authenticatorList.Items.Count;
 			// set up list
 			authenticatorList.Items.Clear();
 
@@ -742,7 +743,7 @@ namespace WinAuth
 				index++;
 			}
 			// Copy found item's code  if it's single result
-			if (this.Config.CopySearchedSingle && authenticatorList.Items.Count == 1)
+			if (initialAmount > 1 && this.Config.CopySearchedSingle && authenticatorList.Items.Count == 1)
 			{
 				Clipboard.SetText(lastFound.Authenticator.CurrentCode);
 				noticeLabel.Text = "Copied!";
@@ -2117,6 +2118,11 @@ namespace WinAuth
 
 			menu.Items.Add(new ToolStripSeparator());
 
+			menuitem = new ToolStripMenuItem(strings.HowToMakePortable);
+			menuitem.Name = "howToMakePortableOptionsMenuItem";
+			menuitem.Click += howToMakePortableOptionsMenuItem_Click;
+			menu.Items.Add(menuitem);
+
 			menuitem = new ToolStripMenuItem(strings.MenuExport);
 			menuitem.Name = "exportOptionsMenuItem";
 			menuitem.Click += exportOptionsMenuItem_Click;
@@ -2131,7 +2137,7 @@ namespace WinAuth
 				menuitem.Click += aboutUpdatesMenuItem_Click;
 				menu.Items.Add(menuitem);
 
-				menu.Items.Add(new ToolStripSeparator());
+				//menu.Items.Add(new ToolStripSeparator());
 			}
 
 			menuitem = new ToolStripMenuItem(strings.MenuAbout + "...");
@@ -2572,6 +2578,16 @@ namespace WinAuth
 		private void autoExitAfterCopyOptionsMenuItem_Click(object sender, EventArgs e)
 		{
 			this.Config.AutoExitAfterCopy = !this.Config.AutoExitAfterCopy;
+		}
+		/// <summary>
+		/// Show dialog how to save config aside app
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void howToMakePortableOptionsMenuItem_Click(object sender, EventArgs e)
+		{
+			string text = "Move " + WinAuthHelper.DEFAULT_AUTHENTICATOR_FILE_NAME + " from " + Path.GetDirectoryName(WinAuthHelper.configLocation("")) + " and put aside WinAuth.exe, to make it portable";
+			MessageBox.Show(this, text, WinAuthMain.APPLICATION_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		/// <summary>

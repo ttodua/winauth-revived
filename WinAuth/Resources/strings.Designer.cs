@@ -19,7 +19,7 @@ namespace WinAuth.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class strings {
@@ -111,7 +111,7 @@ namespace WinAuth.Resources {
         ///
         ///NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation.
         ///
-        ///Valve, the Valve logo, Half-Life, the Half-Life logo, the Lambda logo, Steam, the Steam logo,  [rest of string was truncated]&quot;;.
+        ///Valve, the Valve logo, Half-Life, the Half-Life logo, the Lambda logo, Steam, the Steam lo [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _AboutForm_trademarkLabel_ {
             get {
@@ -189,8 +189,8 @@ namespace WinAuth.Resources {
             get {
                 return ResourceManager.GetString("_ChangePasswordForm_passwordCheckbox_", resourceCulture);
             }
-        } 
-
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
@@ -228,7 +228,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WinAuth Error.
+        ///   Looks up a localized string similar to WinAuth error.
         /// </summary>
         internal static string _ExceptionForm_ {
             get {
@@ -246,7 +246,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Details.
+        ///   Looks up a localized string similar to Show details.
         /// </summary>
         internal static string _ExceptionForm_detailsButton_ {
             get {
@@ -261,7 +261,7 @@ namespace WinAuth.Resources {
         ///
         ///Some diagnostic information has been recorded and saved that might help track down issues in WinAuth.
         ///
-        ///It would help if you can submit this information so we can investigate the crash and try and fix the issue. This information does include information about your authenticators but is only used by the WinAuth developers solely for the purpose of investigating bugs and error reports. It does not include any personal or identifying information. Any information sent has b [rest of string was truncated]&quot;;.
+        ///It would help if you can submit this information so we can investigate the crash and try and fix the issue. This information does include information about your authenticators but is only used by the WinAuth developers solely for the purpose of investigating bugs and error reports. It does not include any personal or identifying information. Any information sent [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _ExceptionForm_errorLabel_ {
             get {
@@ -279,7 +279,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send Error Report.
+        ///   Looks up a localized string similar to Send error report.
         /// </summary>
         internal static string _ExceptionForm_reportButton_ {
             get {
@@ -288,7 +288,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter Password.
+        ///   Looks up a localized string similar to Enter password.
         /// </summary>
         internal static string _GetPasswordForm_ {
             get {
@@ -405,7 +405,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Password.
+        ///   Looks up a localized string similar to Set password.
         /// </summary>
         internal static string _SetPasswordForm_ {
             get {
@@ -468,7 +468,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shortcut Key.
+        ///   Looks up a localized string similar to Shortcut key.
         /// </summary>
         internal static string _SetShortcutKeyForm_ {
             get {
@@ -503,7 +503,7 @@ namespace WinAuth.Resources {
         ///&lt;li&gt;{COPY} to copy the code into the clipboard&lt;/li&gt;
         ///&lt;li&gt;{PASTE} to paste the clipboard contents into the active window&lt;/li&gt;
         ///&lt;li&gt;{EXIT} to exit WinAuth.&lt;/li&gt;&lt;/ul&gt;
-        ///&lt;p&gt;For example, to login [rest of string was truncated]&quot;;.
+        ///&lt;p&gt;For example,  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _SetShortcutKeyForm_advancedTextbox_tooltip {
             get {
@@ -682,12 +682,23 @@ namespace WinAuth.Resources {
             get {
                 return ResourceManager.GetString("AutoExitAfterCopy", resourceCulture);
             }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Auto Refresh.
-        /// </summary>
-        internal static string AutoRefresh {
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Save config file along app.
+		/// </summary>
+		internal static string HowToMakePortable
+		{
+			get
+			{
+				return ResourceManager.GetString("HowToMakePortable", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Auto refresh.
+		/// </summary>
+		internal static string AutoRefresh {
             get {
                 return ResourceManager.GetString("AutoRefresh", resourceCulture);
             }
@@ -712,7 +723,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change or Remove Password.
+        ///   Looks up a localized string similar to Change or remove password.
         /// </summary>
         internal static string ChangeOrRemovePassword {
             get {
@@ -763,7 +774,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy Code.
+        ///   Looks up a localized string similar to Copy code.
         /// </summary>
         internal static string CopyCode {
             get {
@@ -772,7 +783,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy on New Code.
+        ///   Looks up a localized string similar to Copy on new code.
         /// </summary>
         internal static string CopyOnNewCode {
             get {
@@ -799,7 +810,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy To Clipboard.
+        ///   Looks up a localized string similar to Copy to clipboard.
         /// </summary>
         internal static string DefaultActionCopyToClipboard {
             get {
@@ -808,7 +819,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Simulate Hotkey.
+        ///   Looks up a localized string similar to Simulate hotkey.
         /// </summary>
         internal static string DefaultActionHotkey {
             get {
@@ -817,7 +828,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Notification.
+        ///   Looks up a localized string similar to Show notification.
         /// </summary>
         internal static string DefaultActionNotification {
             get {
@@ -902,7 +913,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hide Details.
+        ///   Looks up a localized string similar to Hide details.
         /// </summary>
         internal static string HideDetails {
             get {
@@ -965,7 +976,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load Icon Image.
+        ///   Looks up a localized string similar to Load icon image.
         /// </summary>
         internal static string LoadIconImage {
             get {
@@ -996,7 +1007,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always on Top.
+        ///   Looks up a localized string similar to Always on top.
         /// </summary>
         internal static string MenuAlwaysOnTop {
             get {
@@ -1005,7 +1016,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Size.
+        ///   Looks up a localized string similar to Auto size.
         /// </summary>
         internal static string MenuAutoSize {
             get {
@@ -1014,7 +1025,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Protection.
+        ///   Looks up a localized string similar to Change protection.
         /// </summary>
         internal static string MenuChangeProtection {
             get {
@@ -1077,7 +1088,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember Position.
+        ///   Looks up a localized string similar to Remember position.
         /// </summary>
         internal static string MenuRememberPosition {
             get {
@@ -1086,7 +1097,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start With Windows.
+        ///   Looks up a localized string similar to Start with Windows.
         /// </summary>
         internal static string MenuStartWithWindows {
             get {
@@ -1095,7 +1106,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check for updates....
+        ///   Looks up a localized string similar to Check for updates.
         /// </summary>
         internal static string MenuUpdates {
             get {
@@ -1104,7 +1115,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use System Tray Icon.
+        ///   Looks up a localized string similar to Use system tray icon.
         /// </summary>
         internal static string MenuUseSystemTrayIcon {
             get {
@@ -1169,7 +1180,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Password.
+        ///   Looks up a localized string similar to Set password.
         /// </summary>
         internal static string SetPassword {
             get {
@@ -1178,7 +1189,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shortcut Key.
+        ///   Looks up a localized string similar to Shortcut key.
         /// </summary>
         internal static string ShortcutKey {
             get {
@@ -1187,7 +1198,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Code.
+        ///   Looks up a localized string similar to Show code.
         /// </summary>
         internal static string ShowCode {
             get {
@@ -1196,7 +1207,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show SteamGuard and Recovery Code.
+        ///   Looks up a localized string similar to Show SteamGuard and recovery code.
         /// </summary>
         internal static string ShowRevocation {
             get {
@@ -1205,7 +1216,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Secret Key.
+        ///   Looks up a localized string similar to Show secret key.
         /// </summary>
         internal static string ShowSecretKey {
             get {
@@ -1214,7 +1225,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Serial &amp;&amp; Restore Code.
+        ///   Looks up a localized string similar to Show serial &amp;&amp; restore code.
         /// </summary>
         internal static string ShowSerialAndRestoreCode {
             get {
@@ -1223,7 +1234,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Serial Key and Device ID.
+        ///   Looks up a localized string similar to Show serial key and device ID.
         /// </summary>
         internal static string ShowSerialKeyAndDeviceId {
             get {
@@ -1232,7 +1243,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sync Time.
+        ///   Looks up a localized string similar to Sync time.
         /// </summary>
         internal static string SyncTime {
             get {

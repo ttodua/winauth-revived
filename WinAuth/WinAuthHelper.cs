@@ -128,62 +128,58 @@ namespace WinAuth
 			=dvwu
 			-----END PGP PUBLIC KEY BLOCK-----";
 
+		/// <summary>
+		/// Return location of config file
+		/// </summary>
+		/// <returns>new WinAuthConfig location</returns>
+		public static string configLocation (string configFile)
+		{
+			if (string.IsNullOrEmpty(configFile) == true) {
+				// check for file in current directory
+				configFile = Path.Combine(Environment.CurrentDirectory, DEFAULT_AUTHENTICATOR_FILE_NAME);
+				configFile = File.Exists(configFile) ? configFile : null;
+			}
+			if (string.IsNullOrEmpty(configFile) == true) {
+				// check for file in exe directory
+				configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), DEFAULT_AUTHENTICATOR_FILE_NAME);
+				configFile = File.Exists(configFile) ? configFile : null;
+			}
+			if (string.IsNullOrEmpty(configFile) == true) {
+				// do we have a file specific in the registry?
+				string configDirectory = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), WinAuthMain.APPLICATION_NAME);
+				// check for default authenticator
+				configFile = Path.Combine(configDirectory, DEFAULT_AUTHENTICATOR_FILE_NAME); 
+				configFile = File.Exists(configFile) ? configFile : null;
+			}
+			return configFile;
+		}
 
-    /// <summary>
-    /// Load the authenticator and configuration settings
-    /// </summary>
-    /// <param name="form">parent winform</param>
-    /// <param name="configFile">name of configfile or null for auto</param>
-    /// <param name="password">optional supplied password or null to prompt if necessatu</param>
-    /// <returns>new WinAuthConfig settings</returns>
-    public static WinAuthConfig LoadConfig(Form form, string configFile, string password = null)
-    {
-      WinAuthConfig config = new WinAuthConfig();
+		/// <summary>
+		/// Load the authenticator and configuration settings
+		/// </summary>
+		/// <param name="form">parent winform</param>
+		/// <param name="configFile">name of configfile or null for auto</param>
+		/// <param name="password">optional supplied password or null to prompt if necessatu</param>
+		/// <returns>new WinAuthConfig settings</returns>
+		public static WinAuthConfig LoadConfig(Form form, string configFile, string password = null)
+		{
+			WinAuthConfig config = new WinAuthConfig();
 			if (string.IsNullOrEmpty(password) == false)
 			{
 				config.Password = password;
 			}
 
-      if (string.IsNullOrEmpty(configFile) == true)
-      {
-        // check for file in current directory
-        configFile = Path.Combine(Environment.CurrentDirectory, DEFAULT_AUTHENTICATOR_FILE_NAME);
-					if (File.Exists(configFile) == false)
-					{
-						configFile = null;
-					}
-				}
-      if (string.IsNullOrEmpty(configFile) == true)
-      {
-        // check for file in exe directory
-        configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), DEFAULT_AUTHENTICATOR_FILE_NAME);
-					if (File.Exists(configFile) == false)
-					{
-						configFile = null;
-					}
-				}
-      if (string.IsNullOrEmpty(configFile) == true)
-      {
-        // do we have a file specific in the registry?
-        string configDirectory = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), WinAuthMain.APPLICATION_NAME);
-        // check for default authenticator
-        configFile = Path.Combine(configDirectory, DEFAULT_AUTHENTICATOR_FILE_NAME);
-					// if no config file, just return a blank config
-					if (File.Exists(configFile) == false)
-					{
-						return config;
-					}
-				}
+			configFile = configLocation(configFile);
 
-      // if no config file when one was specified; report an error
-      if (File.Exists(configFile) == false)
-      {
-        //MessageBox.Show(form,
-        // strings.CannotFindConfigurationFile + ": " + configFile,
-        //  form.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        // return config;
+			// if no config file when one was specified; report an error
+			if (File.Exists(configFile) == false)
+			{
+				//MessageBox.Show(form,
+				// strings.CannotFindConfigurationFile + ": " + configFile,
+				//  form.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				// return config;
 				throw new ApplicationException(strings.CannotFindConfigurationFile + ": " + configFile);
-      }
+			}
 
 			// check if readonly
 			FileInfo fi = new FileInfo(configFile);
@@ -233,7 +229,7 @@ namespace WinAuth
 					SaveConfig(config);
 				}
 			}
-			catch (EncryptedSecretDataException )
+			catch (EncryptedSecretDataException)
 			{
 				// we require a password
 				throw;
@@ -243,15 +239,15 @@ namespace WinAuth
 				// we require a password
 				throw;
 			}
-			catch (Exception )
+			catch (Exception)
 			{
 				throw;
 			}
 
 			SaveToRegistry(config);
 
-      return config;
-    }
+			return config;
+		}
 
 		/// <summary>
 		/// Return any 2.x authenticator entry in the registry

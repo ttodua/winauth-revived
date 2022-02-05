@@ -225,6 +225,9 @@ Would you like to import your previous authenticator now?</value>
   <data name="AutoExitAfterCopy" xml:space="preserve">
     <value>Auto-close WinAuth after code is copied</value>
   </data>
+  <data name="HowToMakePortable" xml:space="preserve">
+    <value>Save config file along app</value>
+  </data>
   <data name="MenuChangeProtection" xml:space="preserve">
     <value>Change protection</value>
   </data>
