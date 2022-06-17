@@ -682,30 +682,19 @@ namespace WinAuth.Resources {
             get {
                 return ResourceManager.GetString("AutoExitAfterCopy", resourceCulture);
             }
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to Save config file along app.
-		/// </summary>
-		internal static string HowToMakePortable
-		{
-			get
-			{
-				return ResourceManager.GetString("HowToMakePortable", resourceCulture);
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to Auto refresh.
-		/// </summary>
-		internal static string AutoRefresh {
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto refresh.
+        /// </summary>
+        internal static string AutoRefresh {
             get {
                 return ResourceManager.GetString("AutoRefresh", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to find your configuration file.
+        ///   Looks up a localized string similar to New configuration file was created, because an existing configuration file was not found.
         /// </summary>
         internal static string CannotFindConfigurationFile {
             get {
@@ -927,6 +916,15 @@ namespace WinAuth.Resources {
         internal static string HotKeyNotAvailable {
             get {
                 return ResourceManager.GetString("HotKeyNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save config file along app.
+        /// </summary>
+        internal static string HowToMakePortable {
+            get {
+                return ResourceManager.GetString("HowToMakePortable", resourceCulture);
             }
         }
         

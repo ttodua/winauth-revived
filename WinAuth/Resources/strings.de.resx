@@ -316,7 +316,7 @@ Your code may not be correct</value>
     <value>Auto Refresh</value>
   </data>
   <data name="CannotFindConfigurationFile" xml:space="preserve">
-    <value>Unable to find your configuration file</value>
+    <value>New configuration file was created locally, because an existing configuration file was not found</value>
   </data>
   <data name="CannotLoadAuthenticator" xml:space="preserve">
     <value>Unable to load authenticator from {0}</value>

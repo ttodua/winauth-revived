@@ -132,6 +132,15 @@ namespace WinAuth
 		/// Return location of config file
 		/// </summary>
 		/// <returns>new WinAuthConfig location</returns>
+		public static string portableConfigFile()
+		{
+			return Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), DEFAULT_AUTHENTICATOR_FILE_NAME);
+		}
+
+		/// <summary>
+		/// Return location of config file
+		/// </summary>
+		/// <returns>new WinAuthConfig location</returns>
 		public static string configLocation (string configFile)
 		{
 			if (string.IsNullOrEmpty(configFile) == true) {
@@ -141,7 +150,7 @@ namespace WinAuth
 			}
 			if (string.IsNullOrEmpty(configFile) == true) {
 				// check for file in exe directory
-				configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), DEFAULT_AUTHENTICATOR_FILE_NAME);
+				configFile = portableConfigFile();
 				configFile = File.Exists(configFile) ? configFile : null;
 			}
 			if (string.IsNullOrEmpty(configFile) == true) {
@@ -170,15 +179,17 @@ namespace WinAuth
 			}
 
 			configFile = configLocation(configFile);
-
 			// if no config file when one was specified; report an error
 			if (File.Exists(configFile) == false)
 			{
-				//MessageBox.Show(form,
-				// strings.CannotFindConfigurationFile + ": " + configFile,
-				//  form.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				// return config;
-				throw new ApplicationException(strings.CannotFindConfigurationFile + ": " + configFile);
+				if (form.InvokeRequired)
+				{
+					form.Invoke(new Action( () => { WinAuthForm.ErrorDialog(form, strings.CannotFindConfigurationFile, null, MessageBoxButtons.OK); }) );
+				}
+				configFile = portableConfigFile();
+				config.Filename = configFile;
+				SaveConfig(config);
+				//throw new ApplicationException(strings.CannotFindConfigurationFile + ": " + configFile);
 			}
 
 			// check if readonly
@@ -211,7 +222,6 @@ namespace WinAuth
 					changed = config.ReadXml(reader, password);
 				}
 
-				config.Filename = configFile;
 
 				if (config.Version < WinAuthConfig.CURRENTVERSION)
 				{
