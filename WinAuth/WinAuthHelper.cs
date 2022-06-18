@@ -200,6 +200,9 @@ namespace WinAuth
 				configFile = portableConfigLocation();
 				SaveConfig(config);
 				//throw new ApplicationException(strings.CannotFindConfigurationFile + ": " + configFile);
+			} else
+			{
+				config.Filename = configFile;
 			}
 
 			// check if readonly
