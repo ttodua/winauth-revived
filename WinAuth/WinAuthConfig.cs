@@ -135,11 +135,17 @@ namespace WinAuth
     /// Flag for always on top
     /// </summary>
     private bool _alwaysOnTop;
-
+		
     /// <summary>
     /// Flag to copy the searched single
     /// </summary>
     private bool _copySearchedSingle;
+
+		
+    /// <summary>
+    /// Flag to sort alphabetically
+    /// </summary>
+    private bool _sortAlphabetically = true;
 
     /// <summary>
     /// Try to auto login on every keypress (if password is set already)
@@ -274,10 +280,30 @@ namespace WinAuth
         }
       }
     }
+		
     /// <summary>
-    /// Get/set AutoExitAfterCopy
+    /// Get/set SortAlphabetically
     /// </summary>
-    public bool AutoExitAfterCopy
+    public bool SortAlphabetically
+		{
+      get
+      {
+        return _sortAlphabetically;
+      }
+      set
+      {
+		_sortAlphabetically = value;
+        if (OnConfigChanged != null)
+        {
+          OnConfigChanged(this, new ConfigChangedEventArgs("SortAlphabetically"));
+        }
+      }
+    }
+		
+	/// <summary>
+	/// Get/set AutoExitAfterCopy
+	/// </summary>
+	public bool AutoExitAfterCopy
 		{
       get
       {
@@ -983,9 +1009,13 @@ namespace WinAuth
 						case "autosize":
 							_autoSize = reader.ReadElementContentAsBoolean();
 							break;
-							
+
 						case "copysearchedsingle":
 							_copySearchedSingle = reader.ReadElementContentAsBoolean();
+							break;
+
+						case "sortalphabetically":
+							_sortAlphabetically = reader.ReadElementContentAsBoolean();
 							break;
 
 						case "autoexitaftercopy":
@@ -1135,6 +1165,10 @@ namespace WinAuth
       //
       writer.WriteStartElement("copysearchedsingle");
       writer.WriteValue(this.CopySearchedSingle);
+      writer.WriteEndElement();
+      //
+      writer.WriteStartElement("sortalphabetically");
+      writer.WriteValue(this.SortAlphabetically);
       writer.WriteEndElement();
       //
       writer.WriteStartElement("autoexitaftercopy");

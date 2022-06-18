@@ -397,6 +397,9 @@ Would you like to import your previous authenticator now?</value>
   <data name="CopySearchedSingle" xml:space="preserve">
     <value>Auto-copy if searched single</value>
   </data>
+  <data name="SortAlphabetically" xml:space="preserve">
+    <value>Sort items alphabetically</value>
+  </data>
   <data name="AutoExitAfterCopy" xml:space="preserve">
     <value>Auto-close WinAuth after code is copied</value>
   </data>

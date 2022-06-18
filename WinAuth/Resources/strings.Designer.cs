@@ -694,7 +694,7 @@ namespace WinAuth.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New configuration file was created, because an existing configuration file was not found.
+        ///   Looks up a localized string similar to New configuration file was created locally, because an existing configuration file was not found..
         /// </summary>
         internal static string CannotFindConfigurationFile {
             get {
@@ -1237,6 +1237,15 @@ namespace WinAuth.Resources {
         internal static string ShowSerialKeyAndDeviceId {
             get {
                 return ResourceManager.GetString("ShowSerialKeyAndDeviceId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort items alphabetically.
+        /// </summary>
+        internal static string SortAlphabetically {
+            get {
+                return ResourceManager.GetString("SortAlphabetically", resourceCulture);
             }
         }
         

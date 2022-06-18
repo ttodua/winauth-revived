@@ -483,6 +483,7 @@ namespace WinAuth
 						this.Config.UseTrayIcon = config.UseTrayIcon;
 						this.Config.AlwaysOnTop = config.AlwaysOnTop;
 						this.Config.CopySearchedSingle = config.CopySearchedSingle;
+						this.Config.SortAlphabetically = config.SortAlphabetically;
 						this.Config.AutoExitAfterCopy = config.AutoExitAfterCopy;
 
 						ChangePasswordForm form = new ChangePasswordForm();
@@ -591,6 +592,8 @@ namespace WinAuth
 		/// </summary>
 		private void InitializeForm()
 		{
+
+#if ENABLE_UPDATER
 			// create the updater and check for update if appropriate
 			if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed == false)
 			{
@@ -613,6 +616,7 @@ namespace WinAuth
 				// spin up the autocheck thread and assign callback
 				Updater.AutoCheck(NewVersionAvailable);
 			}
+#endif
 
 			// set up list
 			loadAuthenticatorList();
@@ -759,11 +763,14 @@ namespace WinAuth
 			authenticatorList.Visible = (authenticatorList.Items.Count != 0);
 
 			//sort by alphabet
-			var list = authenticatorList.Items.Cast<AuthenticatorListitem>().OrderBy(item => item.Authenticator.Name).ToList();
-			authenticatorList.Items.Clear();
-			foreach (AuthenticatorListitem listItem in list)
+			if (this.Config.SortAlphabetically)
 			{
-				authenticatorList.Items.Add(listItem);
+				var list = authenticatorList.Items.Cast<AuthenticatorListitem>().OrderBy(item => item.Authenticator.Name).ToList();
+				authenticatorList.Items.Clear();
+				foreach (AuthenticatorListitem listItem in list)
+				{
+					authenticatorList.Items.Add(listItem);
+				}
 			}
 		}
 
@@ -2111,6 +2118,11 @@ namespace WinAuth
 			menuitem.Click += copySearchedSingleOptionsMenuItem_Click;
 			menu.Items.Add(menuitem);
 
+			menuitem = new ToolStripMenuItem(strings.SortAlphabetically);
+			menuitem.Name = "sortAlphabeticallyOptionsMenuItem";
+			menuitem.Click += sortAlphabeticallyOptionsMenuItem_Click;
+			menu.Items.Add(menuitem);
+
 			menuitem = new ToolStripMenuItem(strings.AutoExitAfterCopy);
 			menuitem.Name = "autoExitAfterCopyOptionsMenuItem";
 			menuitem.Click += autoExitAfterCopyOptionsMenuItem_Click;
@@ -2315,6 +2327,12 @@ namespace WinAuth
 			if (menuitem != null)
 			{
 				menuitem.Checked = this.Config.CopySearchedSingle;
+			}
+
+			menuitem = menu.Items.Cast<ToolStripItem>().Where(t => t.Name == "sortAlphabeticallyOptionsMenuItem").FirstOrDefault() as ToolStripMenuItem;
+			if (menuitem != null)
+			{
+				menuitem.Checked = this.Config.SortAlphabetically;
 			}
 
 
@@ -2568,6 +2586,16 @@ namespace WinAuth
 		private void copySearchedSingleOptionsMenuItem_Click(object sender, EventArgs e)
 		{
 			this.Config.CopySearchedSingle = !this.Config.CopySearchedSingle;
+		}
+
+		/// <summary>
+		/// Sort entries alphabetically
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void sortAlphabeticallyOptionsMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Config.SortAlphabetically = !this.Config.SortAlphabetically;
 		}
 
 		/// <summary>
