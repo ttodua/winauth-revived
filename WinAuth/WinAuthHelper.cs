@@ -129,12 +129,23 @@ namespace WinAuth
 			-----END PGP PUBLIC KEY BLOCK-----";
 
 		/// <summary>
-		/// Return location of config file
+		/// Return portable location of config file
 		/// </summary>
 		/// <returns>new WinAuthConfig location</returns>
-		public static string portableConfigFile()
+		public static string portableConfigLocation()
 		{
 			return Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), DEFAULT_AUTHENTICATOR_FILE_NAME);
+		}
+
+		/// <summary>
+		/// Return default location of config file
+		/// </summary>
+		/// <returns>new WinAuthConfig location</returns>
+		public static string defaultConfigLocation()
+		{
+			string configDirectory = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), WinAuthMain.APPLICATION_NAME);
+			Directory.CreateDirectory(configDirectory);
+			return Path.Combine(configDirectory, DEFAULT_AUTHENTICATOR_FILE_NAME);
 		}
 
 		/// <summary>
@@ -150,7 +161,7 @@ namespace WinAuth
 			}
 			if (string.IsNullOrEmpty(configFile) == true) {
 				// check for file in exe directory
-				configFile = portableConfigFile();
+				configFile = portableConfigLocation();
 				configFile = File.Exists(configFile) ? configFile : null;
 			}
 			if (string.IsNullOrEmpty(configFile) == true) {
@@ -186,8 +197,7 @@ namespace WinAuth
 				{
 					form.Invoke(new Action( () => { WinAuthForm.ErrorDialog(form, strings.CannotFindConfigurationFile, null, MessageBoxButtons.OK); }) );
 				}
-				configFile = portableConfigFile();
-				config.Filename = configFile;
+				configFile = portableConfigLocation();
 				SaveConfig(config);
 				//throw new ApplicationException(strings.CannotFindConfigurationFile + ": " + configFile);
 			}
@@ -308,9 +318,7 @@ namespace WinAuth
 				// if no config file yet, use default
 				if (string.IsNullOrEmpty(config.Filename) == true)
 				{
-					string configDirectory = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), WinAuthMain.APPLICATION_NAME);
-					Directory.CreateDirectory(configDirectory);
-					config.Filename = Path.Combine(configDirectory, DEFAULT_AUTHENTICATOR_FILE_NAME);
+					config.Filename = portableConfigLocation();
 				}
 
 				FileInfo fi = new FileInfo(config.Filename);
