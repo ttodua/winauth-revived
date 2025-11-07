@@ -26,3 +26,5 @@ Third Party/MetroFramework/MetroFramework/obj
 /packages
 /Authenticator/obj
 /Authenticator/bin
+.vs
+x64
